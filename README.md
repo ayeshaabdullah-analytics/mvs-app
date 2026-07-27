@@ -2,7 +2,7 @@
 
 > A full-stack AI-powered personal study & goal tracker built with React, Firebase, and Groq (Llama 3.3).
 
-**Live demo:** `<!-- PASTE YOUR VERCEL URL HERE -->`  
+**Live demo:** https://mvs-app-nine.vercel.app/  
 **GitHub:** https://github.com/ayeshaabdullah-analytics/mvs-app
 
 ---
