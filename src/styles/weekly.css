@@ -1,0 +1,537 @@
+/* ─────────────────────────────────────────────
+   WEEKLY PAGE — Advanced Week Planner
+───────────────────────────────────────────── */
+
+/* ── Week navigation ── */
+.week-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.week-nav-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.16s;
+  font-family: inherit;
+  line-height: 1;
+}
+.week-nav-btn:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-soft); }
+
+.week-label {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  min-width: 160px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ── Weekly summary cards ── */
+.weekly-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.ws-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  text-align: center;
+  transition: all 0.2s;
+  background-image: var(--gradient-card);
+  position: relative;
+  overflow: hidden;
+}
+.ws-card:hover { box-shadow: var(--shadow); border-color: var(--border-glow); }
+
+.ws-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.ws-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ── Day density strip ── */
+.day-density-strip {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+  padding: 0.85rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-image: var(--gradient-card);
+}
+
+.density-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: default;
+}
+
+.density-day-name {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+}
+.density-day.is-today .density-day-name { color: var(--primary); }
+
+.density-bar-track {
+  width: 100%;
+  height: 36px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.density-bar-fill {
+  background: var(--gradient-primary);
+  border-radius: 4px;
+  transition: height 0.5s cubic-bezier(0.34,1.56,0.64,1);
+  min-height: 0;
+}
+.density-day.is-today .density-bar-fill { background: var(--primary); box-shadow: 0 0 8px var(--primary); }
+
+.density-count {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.density-day.is-today .density-count { color: var(--primary); }
+
+/* ── Add goal button ── */
+.weekly-add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  width: 100%;
+  padding: 0.8rem;
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.18s;
+  margin-bottom: 1.1rem;
+}
+.weekly-add-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-soft);
+  border-style: solid;
+}
+
+/* ── Add goal form ── */
+.weekly-add-form {
+  animation: slideDown 0.2s ease both;
+  margin-bottom: 1.1rem;
+}
+.weekly-add-form .card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 1px var(--primary-soft), var(--shadow);
+  border-radius: var(--radius-lg);
+}
+.weekly-add-form .form-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Goal cards list ── */
+.weekly-goals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ── Weekly goal card ── */
+.wg-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  animation: fadeIn 0.24s ease both;
+  background-image: var(--gradient-card);
+}
+.wg-card:hover { box-shadow: var(--shadow); }
+.wg-card.expanded {
+  border-color: var(--border-glow);
+  box-shadow: 0 0 0 1px var(--primary-soft), var(--shadow);
+}
+
+.wg-header {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1rem 1.1rem;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.16s;
+}
+.wg-header:hover { background: var(--hover); }
+
+.wg-title-block { flex: 1; min-width: 0; }
+
+.wg-title {
+  font-weight: 700;
+  font-size: 0.97rem;
+  color: var(--text);
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.wg-title.done { text-decoration: line-through; opacity: 0.5; }
+
+.wg-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.wg-link-badge {
+  font-size: 0.68rem;
+  color: var(--primary);
+  background: var(--primary-soft);
+  padding: 0.12rem 0.48rem;
+  border-radius: 20px;
+  font-weight: 700;
+  border: 1px solid var(--border-glow);
+}
+
+.wg-task-count {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.wg-progress-bar {
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 0.35rem;
+}
+.wg-progress-fill {
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+  transition: width 0.55s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.wg-pct-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+.wg-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.wg-delete-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--text-faint);
+  font-size: 0.78rem;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: all 0.15s;
+  opacity: 0;
+}
+.wg-header:hover .wg-delete-btn { opacity: 1; }
+.wg-delete-btn:hover { color: var(--danger); background: var(--danger-soft); }
+
+.wg-chevron {
+  color: var(--text-faint);
+  font-size: 0.7rem;
+  transition: transform 0.24s;
+  flex-shrink: 0;
+}
+.wg-chevron.open { transform: rotate(180deg); }
+
+/* ── Expanded body ── */
+.wg-body {
+  border-top: 1px solid var(--border);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  animation: slideDown 0.22s ease both;
+}
+
+/* ── AI toolbar ── */
+.ai-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+  padding: 0.75rem 0.9rem;
+  background: var(--surface2);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.day-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.32rem;
+  flex-wrap: wrap;
+  flex: 1;
+}
+.day-selector-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-right: 0.1rem;
+}
+.day-chip {
+  background: var(--surface3);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 50px;
+  padding: 0.18rem 0.55rem;
+  font-size: 0.71rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+.day-chip.active {
+  background: var(--primary-soft);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.ai-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.38rem;
+  background: var(--gradient-primary);
+  border: none;
+  color: #fff;
+  border-radius: var(--radius-sm);
+  padding: 0.45rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+  font-family: inherit;
+  flex-shrink: 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2), var(--glow-sm);
+}
+.ai-btn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.25), var(--glow); }
+.ai-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+/* ── AI Draft ── */
+.ai-draft {
+  background: var(--surface2);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  animation: slideDown 0.22s ease both;
+}
+.ai-draft-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.ai-draft-header h4 {
+  font-size: 0.73rem;
+  color: var(--primary);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ai-draft-item {
+  display: flex;
+  gap: 0.42rem;
+  align-items: center;
+}
+.ai-draft-item select {
+  width: 115px;
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  padding: 0.38rem 0.55rem;
+}
+.ai-draft-item input {
+  flex: 1;
+  font-size: 0.86rem;
+  padding: 0.4rem 0.7rem;
+}
+.ai-draft-del {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--text-faint);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+.ai-draft-del:hover { color: var(--danger); background: var(--danger-soft); }
+
+.ai-draft-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding-top: 0.4rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Task list ── */
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.38rem;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 0.58rem;
+  padding: 0.6rem 0.8rem;
+  background: var(--surface2);
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  transition: all 0.16s;
+  animation: fadeIn 0.16s ease both;
+}
+.task-item:hover { border-color: var(--border); background: var(--surface3); }
+.task-item.done .task-desc { text-decoration: line-through; opacity: 0.45; }
+
+.task-day-badge {
+  font-size: 0.66rem;
+  font-weight: 800;
+  color: var(--primary);
+  background: var(--primary-soft);
+  padding: 0.12rem 0.45rem;
+  border-radius: 12px;
+  min-width: 38px;
+  text-align: center;
+  flex-shrink: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--border-glow);
+}
+.task-day-badge.float {
+  color: var(--accent2);
+  background: rgba(244,114,182,0.1);
+  border-color: rgba(244,114,182,0.2);
+}
+
+.task-desc {
+  flex: 1;
+  font-size: 0.875rem;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.task-item .btn-danger {
+  opacity: 0;
+  transition: opacity 0.15s;
+  padding: 0.2rem 0.42rem;
+  font-size: 0.72rem;
+}
+.task-item:hover .btn-danger { opacity: 1; }
+
+/* ── Manual task form ── */
+.manual-task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: var(--surface2);
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--border);
+  animation: slideDown 0.16s ease both;
+}
+
+.add-task-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  background: none;
+  border: 1px dashed var(--border);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.16s;
+  width: 100%;
+}
+.add-task-btn:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-soft); }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .weekly-summary { grid-template-columns: 1fr 1fr; }
+  .day-density-strip { display: none; }
+}

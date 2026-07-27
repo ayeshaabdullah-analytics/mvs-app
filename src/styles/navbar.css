@@ -1,0 +1,434 @@
+/* ─────────────────────────────────────────────
+   SIDEBAR NAVIGATION — Desktop Left Sidebar
+───────────────────────────────────────────── */
+
+/* ── Sidebar ── */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 220px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  background-image: linear-gradient(180deg,
+    rgba(var(--primary-rgb, 192,38,211), 0.08) 0%,
+    var(--gradient-surface));
+  border-right: 1px solid var(--border);
+  box-shadow: 4px 0 32px rgba(0,0,0,0.3), var(--glow-sm);
+  transition: width 0.25s cubic-bezier(0.4,0,0.2,1);
+  overflow: hidden;
+}
+
+/* Per-theme sidebar bg tints */
+[data-theme="neon"]    .sidebar { background: linear-gradient(180deg, rgba(192,38,211,0.1) 0%, #1a1040 100%); }
+[data-theme="sunrise"] .sidebar { background: linear-gradient(180deg, rgba(255,107,53,0.1) 0%, #2d1000 100%); }
+[data-theme="arctic"]  .sidebar { background: linear-gradient(180deg, rgba(0,212,255,0.1) 0%, #002540 100%); }
+[data-theme="forest"]  .sidebar { background: linear-gradient(180deg, rgba(57,255,20,0.08) 0%, #002410 100%); }
+
+/* ── Logo area ── */
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.5rem 1.2rem 1rem;
+  text-decoration: none;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border-soft);
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-logo-text {
+  font-size: 1.8rem;
+  font-weight: 900;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -2px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.sidebar-logo-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  box-shadow: var(--glow-sm);
+  animation: pulse 2.5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* ── Nav links ── */
+.sidebar-nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  padding: 0 0.7rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sidebar-nav::-webkit-scrollbar { width: 3px; }
+.sidebar-nav::-webkit-scrollbar-thumb { background: var(--border); }
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+  position: relative;
+  border-left: 3px solid transparent;
+  overflow: hidden;
+}
+
+.sidebar-link svg {
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.sidebar-link:hover {
+  color: var(--text);
+  background: var(--hover);
+}
+.sidebar-link:hover svg { opacity: 0.9; }
+
+.sidebar-link.active {
+  background: var(--gradient-primary);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.3), var(--glow-sm);
+  border-left-color: transparent;
+}
+.sidebar-link.active svg { opacity: 1; filter: brightness(1.3); }
+
+.sidebar-link-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Sidebar section divider ── */
+.sidebar-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 0.5rem 0.7rem;
+}
+
+/* ── Bottom user section ── */
+.sidebar-bottom {
+  flex-shrink: 0;
+  padding: 0.85rem 0.85rem 1rem;
+  border-top: 1px solid var(--border-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem 0.65rem;
+  border-radius: var(--radius-sm);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  transition: all 0.18s;
+  cursor: pointer;
+  text-decoration: none;
+  min-width: 0;
+}
+.sidebar-user:hover { border-color: var(--border-glow); box-shadow: var(--glow-sm); }
+
+.sidebar-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  border: 2px solid var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+  overflow: hidden;
+  box-shadow: var(--glow-sm);
+}
+.sidebar-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+.sidebar-user-info {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.sidebar-user-name {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-user-email {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 0.08rem;
+}
+
+/* ── Theme switcher button ── */
+.sidebar-theme-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 0.9rem;
+  background: var(--primary-soft);
+  border: 1px solid var(--border-glow);
+  border-radius: 50px;
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s;
+  font-family: inherit;
+  white-space: nowrap;
+}
+.sidebar-theme-btn:hover {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: var(--glow-sm);
+}
+
+/* ── Theme dropdown ── */
+.sidebar-theme-panel {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  animation: slideUp 0.18s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.sidebar-theme-item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: var(--radius-sm);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: left;
+}
+.sidebar-theme-item:hover { background: var(--hover); color: var(--text); }
+.sidebar-theme-item.active { color: var(--primary); background: var(--primary-soft); font-weight: 700; }
+.sidebar-theme-item-check { margin-left: auto; font-size: 0.7rem; color: var(--primary); }
+
+/* ── Logout button ── */
+.sidebar-logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: none;
+  border: none;
+  color: var(--text-faint);
+  font-size: 0.8rem;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0.4rem 0.65rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.15s;
+  width: 100%;
+  text-align: left;
+}
+.sidebar-logout-btn:hover { color: var(--danger); background: var(--danger-soft); }
+
+/* ─────────────────────────────────────────────
+   COLLAPSED SIDEBAR — medium screens (icons only)
+───────────────────────────────────────────── */
+@media (max-width: 1024px) and (min-width: 641px) {
+  .sidebar {
+    width: 60px;
+  }
+
+  .sidebar-logo-text,
+  .sidebar-logo-dot,
+  .sidebar-link-label,
+  .sidebar-user-info,
+  .sidebar-theme-btn span,
+  .sidebar-theme-panel,
+  .sidebar-divider {
+    display: none;
+  }
+
+  .sidebar-logo {
+    padding: 1.2rem 0;
+    justify-content: center;
+  }
+
+  .sidebar-nav {
+    padding: 0 0.4rem;
+    align-items: center;
+  }
+
+  .sidebar-link {
+    padding: 0.65rem;
+    justify-content: center;
+    border-radius: 12px;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+    position: relative;
+  }
+
+  .sidebar-link svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Tooltip on hover */
+  .sidebar-link::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.3rem 0.75rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 200;
+    box-shadow: var(--shadow-sm);
+  }
+  .sidebar-link:hover::after { opacity: 1; }
+
+  .sidebar-bottom {
+    padding: 0.6rem 0.4rem 0.8rem;
+    align-items: center;
+  }
+
+  .sidebar-user {
+    padding: 0.5rem;
+    justify-content: center;
+    background: none;
+    border-color: transparent;
+  }
+
+  .sidebar-theme-btn {
+    padding: 0.5rem;
+    justify-content: center;
+  }
+
+  .sidebar-logout-btn {
+    justify-content: center;
+    padding: 0.5rem;
+  }
+  .sidebar-logout-btn span { display: none; }
+}
+
+/* ─────────────────────────────────────────────
+   MAIN CONTENT OFFSET
+───────────────────────────────────────────── */
+.main-content {
+  margin-left: 220px;
+  min-height: 100vh;
+  transition: margin-left 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+
+@media (max-width: 1024px) and (min-width: 641px) {
+  .main-content { margin-left: 60px; }
+}
+
+@media (max-width: 640px) {
+  .sidebar { display: none; }
+  .main-content { margin-left: 0; padding-bottom: 70px; }
+}
+
+/* ─────────────────────────────────────────────
+   MOBILE BOTTOM TAB BAR
+───────────────────────────────────────────── */
+.mobile-tabs {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 62px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.mobile-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  flex: 1;
+  text-decoration: none;
+  color: var(--text-faint);
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.5rem 0;
+  transition: color 0.18s;
+  position: relative;
+}
+.mobile-tab svg { opacity: 0.5; transition: all 0.18s; }
+.mobile-tab.active { color: var(--primary); }
+.mobile-tab.active svg { opacity: 1; }
+.mobile-tab.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26px;
+  height: 2px;
+  background: var(--gradient-primary);
+  border-radius: 0 0 2px 2px;
+}
+
+@media (max-width: 640px) {
+  .mobile-tabs { display: flex; }
+}
