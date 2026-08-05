@@ -497,3 +497,61 @@
   text-align: right;
   margin-top: 0.1rem;
 }
+
+/* ── Retroactive check-in ── */
+.habit-log-past-btn {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.16s;
+  flex-shrink: 0;
+  font-family: inherit;
+}
+.habit-log-past-btn:hover {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.habit-past-log {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0.6rem 0.75rem;
+  background: var(--surface2);
+  border: 1px dashed var(--border-glow);
+  border-radius: var(--radius-sm);
+  animation: slideDown 0.16s ease both;
+}
+.habit-past-log input[type="date"] {
+  flex: 1;
+  min-width: 130px;
+  font-size: 0.82rem;
+  padding: 0.3rem 0.6rem;
+}
+.habit-past-log-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.habit-past-log-status {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 20px;
+}
+.habit-past-log-status.checked {
+  background: var(--success-soft);
+  color: var(--success);
+  border: 1px solid rgba(74,222,128,0.3);
+}

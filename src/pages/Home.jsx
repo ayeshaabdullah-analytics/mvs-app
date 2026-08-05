@@ -183,10 +183,14 @@ export default function Home() {
         const pendingTasks = allGoalTasks.filter((t) => !t.done);
         const todayTasks   = pendingTasks.filter((t) => t.dayOfWeek === todayFull);
         const floatTasks   = pendingTasks.filter((t) => !t.dayOfWeek);
+        // Past-due: undone tasks assigned to a day earlier than today in this week
+        const todayDowIndex  = FULL_DAYS.indexOf(todayFull);
+        const pastDueTasks   = pendingTasks.filter((t) =>
+          t.dayOfWeek && FULL_DAYS.indexOf(t.dayOfWeek) < todayDowIndex
+        );
         const coach        = coachData[goal.id] ?? {};
         const allComplete  = allGoalTasks.length > 0 && doneTasks.length === allGoalTasks.length;
         const pct          = allGoalTasks.length ? Math.round((doneTasks.length / allGoalTasks.length) * 100) : 0;
-
         return (
           <div key={goal.id} className="home-goal-block">
             {/* Goal header */}
@@ -254,6 +258,36 @@ export default function Home() {
                           <span className="task-card-label">{task.description}</span>
                           <span className="task-card-play">▶</span>
                         </button>
+                      ))}
+                    </div>
+                  </>
+                )}
+
+                {pastDueTasks.length > 0 && (
+                  <>
+                    <p className="home-section-label past-due">⚠ Past due — mark done or start now</p>
+                    <div className="tasks-section" style={{ paddingTop: 0 }}>
+                      {pastDueTasks.map((task) => (
+                        <div key={task.id} className="task-card past-due-card">
+                          <span className="task-card-day past-due-day">{task.dayOfWeek.slice(0,3)}</span>
+                          <span className="task-card-label">{task.description}</span>
+                          <button
+                            className="task-done-retroactive"
+                            onClick={() => updateTask(task.id, { done: true })}
+                            title="Mark as done"
+                            aria-label="Mark done"
+                          >
+                            ✓ Done
+                          </button>
+                          <button
+                            className="task-card-play-btn"
+                            onClick={() => startTimer(task, goal)}
+                            title="Start timer"
+                            aria-label="Start timer"
+                          >
+                            ▶
+                          </button>
+                        </div>
                       ))}
                     </div>
                   </>

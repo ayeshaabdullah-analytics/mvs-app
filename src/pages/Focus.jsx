@@ -12,6 +12,8 @@ const MODES = [
 
 const CIRCUMFERENCE = 565; // 2π × 90
 
+const EMPTY_RETRO = { date: '', durationMinutes: 30, weeklyGoalId: '', dailyTaskId: '', subject: '' };
+
 export default function Focus() {
   const { docs: weeklyGoals }  = useCollection('weeklyGoals');
   const { docs: allTasks }     = useCollection('dailyTasks');
@@ -32,6 +34,11 @@ export default function Focus() {
   const [selectedTask, setSelectedTask] = useState(null);
   const [selectedGoal, setSelectedGoal] = useState(null);
   const [todaySessions,setTodaySessions]= useState([]);
+
+  // Retroactive session log
+  const [showRetro,   setShowRetro]   = useState(false);
+  const [retroForm,   setRetroForm]   = useState(EMPTY_RETRO);
+  const [retroSaving, setRetroSaving] = useState(false);
 
   const intervalRef = useRef(null);
   const startRef    = useRef(null);
@@ -107,8 +114,37 @@ export default function Focus() {
     }
   };
 
-  const finishEarly = async (markDone = false) => {
-    clearInterval(intervalRef.current);
+  const handleRetroSubmit = async (e) => {
+    e.preventDefault();
+    if (!retroForm.date || !retroForm.durationMinutes) return;
+    setRetroSaving(true);
+    // Build start/end times from the chosen date + duration
+    const [y, m, d] = retroForm.date.split('-').map(Number);
+    const endTime   = new Date(y, m - 1, d, 23, 0, 0); // set to 11 pm on that day
+    const startTime = new Date(endTime.getTime() - retroForm.durationMinutes * 60_000);
+    const goal      = weeklyGoals.find(g => g.id === retroForm.weeklyGoalId);
+    const task      = retroForm.dailyTaskId
+      ? allTasks.find(t => t.id === retroForm.dailyTaskId)
+      : null;
+    try {
+      await addSession({
+        weeklyGoalId:    retroForm.weeklyGoalId || null,
+        dailyTaskId:     retroForm.dailyTaskId  || null,
+        subject:         retroForm.subject.trim() || task?.description || goal?.title || 'Focus session',
+        startTime:       startTime.toISOString(),
+        endTime:         endTime.toISOString(),
+        durationMinutes: Number(retroForm.durationMinutes),
+        pomodoroType:    'work',
+        retroactive:     true,
+      });
+      setRetroForm(EMPTY_RETRO);
+      setShowRetro(false);
+    } finally {
+      setRetroSaving(false);
+    }
+  };
+
+  const finishEarly = async (markDone = false) => {    clearInterval(intervalRef.current);
     await saveSession(elapsed, markDone);
     setStatus('done');
     if (currentMode.type === 'work') setCyclesDone((c) => c + 1);
@@ -263,11 +299,101 @@ export default function Focus() {
                   {s.subject || goal?.title || 'Session'}
                 </span>
                 {s.pomodoroType === 'work' && <span className="focus-completed-badge">🍅 focus</span>}
+                {s.retroactive && <span className="focus-retro-badge">📅 logged</span>}
               </div>
             );
           })}
         </div>
       )}
+
+      {/* ── Log past session ── */}
+      <div className="retro-section">
+        <button
+          className="retro-toggle-btn"
+          onClick={() => setShowRetro(v => !v)}
+          aria-expanded={showRetro}
+        >
+          <span>📅 Log a past session</span>
+          <span className="retro-chevron">{showRetro ? '▲' : '▼'}</span>
+        </button>
+
+        {showRetro && (
+          <form className="retro-form" onSubmit={handleRetroSubmit}>
+            <div className="retro-form-row">
+              <div>
+                <label className="retro-label">Date</label>
+                <input
+                  type="date"
+                  value={retroForm.date}
+                  max={new Date().toISOString().split('T')[0]}
+                  onChange={e => setRetroForm(f => ({ ...f, date: e.target.value }))}
+                  required
+                />
+              </div>
+              <div>
+                <label className="retro-label">Duration (minutes)</label>
+                <input
+                  type="number"
+                  min="1"
+                  max="480"
+                  value={retroForm.durationMinutes}
+                  onChange={e => setRetroForm(f => ({ ...f, durationMinutes: e.target.value }))}
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="retro-label">Goal (optional)</label>
+              <select
+                value={retroForm.weeklyGoalId}
+                onChange={e => setRetroForm(f => ({ ...f, weeklyGoalId: e.target.value, dailyTaskId: '' }))}
+              >
+                <option value="">— No goal —</option>
+                {weeklyGoals.map(g => (
+                  <option key={g.id} value={g.id}>{g.title}</option>
+                ))}
+              </select>
+            </div>
+
+            {retroForm.weeklyGoalId && (
+              <div>
+                <label className="retro-label">Task (optional)</label>
+                <select
+                  value={retroForm.dailyTaskId}
+                  onChange={e => setRetroForm(f => ({ ...f, dailyTaskId: e.target.value }))}
+                >
+                  <option value="">— No specific task —</option>
+                  {allTasks
+                    .filter(t => t.weeklyGoalId === retroForm.weeklyGoalId)
+                    .map(t => (
+                      <option key={t.id} value={t.id}>{t.description}</option>
+                    ))}
+                </select>
+              </div>
+            )}
+
+            <div>
+              <label className="retro-label">Session note (optional)</label>
+              <input
+                type="text"
+                placeholder="What did you work on?"
+                value={retroForm.subject}
+                onChange={e => setRetroForm(f => ({ ...f, subject: e.target.value }))}
+              />
+            </div>
+
+            <div className="retro-form-actions">
+              <button type="submit" className="btn-primary" style={{ width:'auto' }} disabled={retroSaving}>
+                {retroSaving ? 'Saving…' : '💾 Save session'}
+              </button>
+              <button type="button" className="btn-ghost" onClick={() => { setShowRetro(false); setRetroForm(EMPTY_RETRO); }}>
+                Cancel
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
     </div>
   );
 }

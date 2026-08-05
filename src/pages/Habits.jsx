@@ -438,7 +438,22 @@ function HabitCard({ habit, checkinMap, checkins, weekDates, tk, handleCheckin, 
   const todayChecked = checkedDays.has(tk);
   const color        = habit.color || 'var(--primary)';
 
+  // Retroactive log state
+  const [showPastLog, setShowPastLog] = useState(false);
+  const [pastDate, setPastDate]       = useState('');
+
   const isFixed = ['daily','weekdays','custom'].includes(ft);
+
+  // max date for past-log picker = today
+  const maxDate = tk;
+
+  const handlePastLog = async (e) => {
+    e.preventDefault();
+    if (!pastDate) return;
+    await handleCheckin(habit.id, pastDate);
+    setPastDate('');
+    setShowPastLog(false);
+  };
 
   /* ── daily/weekdays/custom ── */
   const streak   = isFixed ? computeStreak(habit.id, checkinMap) : 0;
@@ -623,8 +638,42 @@ function HabitCard({ habit, checkinMap, checkins, weekDates, tk, handleCheckin, 
                   ? `Due in ${daysLeft}d`
                   : '✓ Check in'}
         </button>
+        <button
+          className="habit-log-past-btn"
+          type="button"
+          onClick={() => setShowPastLog(v => !v)}
+          title="Log for a past date"
+          aria-label="Log for a past date"
+        >
+          📅
+        </button>
         <button className="btn-danger" onClick={() => deleteHabit(habit.id)} title="Delete habit">✕</button>
       </div>
+
+      {/* ── Retroactive log ── */}
+      {showPastLog && (
+        <form className="habit-past-log" onSubmit={handlePastLog}>
+          <span className="habit-past-log-label">Log for past date:</span>
+          <input
+            type="date"
+            value={pastDate}
+            max={maxDate}
+            onChange={e => setPastDate(e.target.value)}
+            required
+            aria-label="Past date"
+          />
+          {pastDate && checkedDays.has(pastDate) && (
+            <span className="habit-past-log-status checked">Already logged</span>
+          )}
+          <button type="submit" className="btn-secondary" style={{ width:'auto', padding:'0.3rem 0.75rem', fontSize:'0.8rem' }}>
+            {pastDate && checkedDays.has(pastDate) ? 'Unlog' : 'Log'}
+          </button>
+          <button type="button" className="btn-ghost" style={{ width:'auto', padding:'0.3rem 0.6rem', fontSize:'0.8rem' }}
+            onClick={() => { setShowPastLog(false); setPastDate(''); }}>
+            ✕
+          </button>
+        </form>
+      )}
     </div>
   );
 }
