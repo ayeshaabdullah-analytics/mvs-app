@@ -178,7 +178,7 @@ export default function Weekly() {
           <div className="ws-value" style={{ color: 'var(--accent3, #38bdf8)' }}>
             {totalWeekMin > 0 ? fmtDuration(totalWeekMin) : '—'}
           </div>
-          <div className="ws-label">Time studied</div>
+          <div className="ws-label">Focus time</div>
         </div>
       </div>
 

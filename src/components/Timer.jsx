@@ -54,7 +54,7 @@ export default function Timer({ task, weeklyGoal, onClose, onDone }) {
     await addSession({
       weeklyGoalId: weeklyGoal?.id ?? null,
       dailyTaskId:  task?.id ?? null,
-      subject:      subject || weeklyGoal?.title || 'Study',
+      subject:      subject || weeklyGoal?.title || 'Focus session',
       startTime:    start.toISOString(),
       endTime:      now.toISOString(),
       durationMinutes,
@@ -85,7 +85,7 @@ export default function Timer({ task, weeklyGoal, onClose, onDone }) {
   }
 
   return (
-    <div className="timer-overlay" role="dialog" aria-modal="true" aria-label="Study timer">
+    <div className="timer-overlay" role="dialog" aria-modal="true" aria-label="Focus timer">
       <div className="timer-card">
 
         {/* Top controls */}

@@ -1,6 +1,6 @@
 # MVS — Milestone · Vision · Steps
 
-### An AI-powered personal study planner and goal tracker
+### An AI-powered goal and time tracker for every area of life
 
 **🌐 Live App:** [https://mvs-app-nine.vercel.app](https://mvs-app-nine.vercel.app)  
 **📁 GitHub:** [https://github.com/ayeshaabdullah-analytics/mvs-app](https://github.com/ayeshaabdullah-analytics/mvs-app)
@@ -9,15 +9,15 @@
 
 ## The Problem This Solves
 
-Most students have goals but no system connecting them to daily action. They set a big goal ("pass Data Structures"), forget about it by Wednesday, and only panic before exams. Existing tools are either too simple (a to-do list) or too complex (full project management software built for teams).
+Most people have goals across multiple areas of life — work, health, side projects, personal growth — but no single system that connects them to daily action. They set ambitious goals, lose track of them mid-week, and only scramble when deadlines hit. Existing tools are either too simple (a to-do list) or too complex (full project management software built for teams).
 
-**MVS bridges that gap.** It gives students a structured three-layer planning system:
+**MVS bridges that gap.** It gives you a structured three-layer planning system that works for any goal, in any domain:
 
 - **Milestone** — long-term horizon goals (year / quarter / month)
 - **Vision** — weekly goals linked to those horizons
 - **Steps** — AI-generated daily tasks that make the weekly goal achievable
 
-The result is a complete study operating system: plan, focus, track, reflect — all in one place, with AI doing the heavy lifting of breaking big goals into daily steps.
+The result is a complete personal operating system: plan, focus, track, reflect — all in one place, with AI doing the heavy lifting of breaking big goals into daily steps.
 
 ---
 
@@ -67,7 +67,7 @@ Open in an incognito window, sign up with a new account, and the app is immediat
 |---|---|
 | **Horizon Goals** | Set long-term goals at year, quarter, or month level. Organised in a 3-column Kanban board with progress bars and completion tracking. |
 | **Weekly Goals** | Create weekly goals and link them to a horizon goal. Navigate between past and future weeks. |
-| **AI Task Breakdown** | Enter a weekly goal, select which days you are available, and the AI generates a realistic daily task plan distributed across the week. |
+| **AI Task Breakdown** | Enter a weekly goal, select which days you are available, and the AI generates a realistic daily task plan distributed across the week. Works for any goal type — work, health, personal projects, or anything else. |
 | **Daily Task Management** | Tasks are displayed on the Today dashboard filtered to the current day. Mark tasks done directly from the home screen. |
 
 ### Focus & Productivity
@@ -76,15 +76,16 @@ Open in an incognito window, sign up with a new account, and the app is immediat
 | **Pomodoro Timer** | Four modes: 25-minute focus, 5-minute short break, 15-minute long break, and a custom duration. |
 | **Cycle Tracker** | Visual dots track how many focus cycles have been completed in the current session. |
 | **Task-linked Sessions** | Pick a specific task to focus on before starting the timer. Finish and mark the task done in one click. |
-| **Session Logging** | Every completed session is automatically saved to Firestore with start time, end time, duration, and linked goal. |
+| **Session Logging** | Every completed session is automatically saved with start time, end time, duration, and linked goal. |
+| **Retroactive Logging** | Log a past session you forgot to record — pick the date, duration, and goal. Counts correctly in all stats. |
 
 ### Tracking & Analytics
 | Feature | Description |
 |---|---|
-| **Statistics Page** | 30-day trend line chart, 17-week activity heatmap, time-by-day-of-week bar chart, time per goal breakdown, and a full session log. |
-| **Streak Counter** | Calculates the current consecutive study day streak from session history. |
-| **Habit Tracker** | Create habits with emoji, colour, and frequency settings. A 7-day completion grid shows consistency at a glance. Streak counter per habit. |
-| **Achievements** | 25 badges across 6 categories (study time, sessions, streaks, goals, journal, special) that unlock automatically based on real usage data. |
+| **Statistics Page** | 30-day activity trend chart, 17-week activity heatmap, time-by-day-of-week bar chart, time per goal breakdown, and a full session log. |
+| **Streak Counter** | Calculates the current consecutive active-day streak from session history. |
+| **Habit Tracker** | Create habits with emoji, colour, and flexible frequency settings (daily, every N days, X times per week/month). A 7-day completion grid shows consistency at a glance. |
+| **Achievements** | 25 badges across 6 categories (focus time, sessions, streaks, goals, journal, special) that unlock automatically based on real usage data. |
 
 ### Reflection
 | Feature | Description |
@@ -97,7 +98,7 @@ Open in an incognito window, sign up with a new account, and the app is immediat
 ### Personalisation & Auth
 | Feature | Description |
 |---|---|
-| **4 Vivid Themes** | Neon (purple), Sunrise (coral/gold), Arctic (cyan), Forest (neon green). Theme is saved per user in Firestore. |
+| **4 Vivid Themes** | Neon (purple), Sunrise (coral/gold), Arctic (cyan), Forest (neon green). Theme is saved per user. |
 | **Google OAuth + Email Auth** | Sign in with Google or email/password. |
 | **Profile Page** | Shows all-time stats, unlocked achievement badges, theme picker, and account settings. |
 | **Responsive Design** | Left sidebar on desktop collapses to icon-only on medium screens. Bottom tab bar on mobile. |
@@ -110,21 +111,22 @@ Open in an incognito window, sign up with a new account, and the app is immediat
 MVS uses AI in two places:
 
 **1. Weekly Goal → Daily Task Breakdown**  
-The user types a weekly goal (e.g. *"Master binary trees and graph algorithms"*) and selects which days of the week they are available. The AI returns a structured JSON plan assigning specific tasks to specific days, which the user can edit before saving.
+Type a weekly goal (e.g. *"Ship the landing page redesign"*, *"Run 3 times this week"*, *"Finish the React course module"*) and select which days you're available. The AI returns a structured JSON plan assigning specific tasks to specific days, which you can edit before saving.
 
 **2. AI Coach Insight**  
-On the Today page, each goal block has a "✦ AI Coach insight" button. The AI receives the goal title and current completion stats, then writes a short personalised motivational message.
+On the Today page, each goal block has a "✦ AI Coach insight" button. The AI receives the goal title and current completion stats, then writes a short personalised motivational message — whether the goal is work, health, or a personal project.
 
 ### The exact system prompts used
 
 **Goal Breakdown prompt:**
 ```
-System: You are a flexible study planning assistant. A student will give
-you a weekly goal and the days they have available. Break the goal into
-smaller tasks distributed across those days. Do NOT assign any clock
+System: You are a supportive planning assistant helping someone break down
+a goal into manageable tasks. The goal could be for work, study, health,
+a personal project, or any other area of life. Break the goal into smaller
+tasks distributed across the available days. Do NOT assign any clock
 times — only assign which day of the week each task belongs to, or leave
-a task unassigned to a specific day if it's better done whenever the
-student has time. Output ONLY valid JSON:
+a task unassigned if it's better done whenever there is time.
+Output ONLY valid JSON:
 [{"day": "Monday" or null, "task": "short description"}].
 Keep each task under 10 words. Distribute realistically — not every day
 needs a task.
@@ -135,7 +137,7 @@ User: Weekly goal: "[goal title]"
 
 **Coach Insight prompt:**
 ```
-You are an encouraging study coach. A student's weekly goal is:
+You are an encouraging life-goal coach. Someone's weekly goal is:
 "[goal title]". They have X of Y tasks completed. Write a short 2-3
 sentence motivational insight. Never mention clock times, never
 guilt-trip about gaps. Be warm and specific to their progress.
@@ -172,7 +174,7 @@ All collections are user-scoped — every document has a `userId` field matching
 horizonGoals/        Year, quarter, month long-term goals
 weeklyGoals/         Weekly goals linked to horizon goals
 dailyTasks/          Tasks linked to weekly goals, with day assignment
-sessions/            Timer sessions with start, end, duration, linked goal
+sessions/            Focus sessions with start, end, duration, linked goal
 journalEntries/      Daily journal entries with mood, tags, body text
 habits/              Habit definitions (name, emoji, frequency, color)
 habitCheckins/       Per-day habit completion records
@@ -267,7 +269,7 @@ mvs-app/
 ├── src/
 │   ├── components/
 │   │   ├── Navbar.jsx       Left sidebar + mobile tab bar
-│   │   ├── Timer.jsx        Study timer modal component
+│   │   ├── Timer.jsx        Focus timer modal component
 │   │   └── ProtectedRoute.jsx
 │   ├── context/
 │   │   ├── AuthContext.jsx  Firebase auth state management

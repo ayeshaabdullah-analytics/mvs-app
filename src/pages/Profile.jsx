@@ -84,7 +84,7 @@ export default function Profile() {
       <div className="profile-stats">
         <div className="profile-stat-card">
           <div className="profile-stat-value">{totalHours}h</div>
-          <div className="profile-stat-label">Total studied</div>
+          <div className="profile-stat-label">Focus time</div>
         </div>
         <div className="profile-stat-card">
           <div className="profile-stat-value" style={{ color:'var(--warning)' }}>{streak} 🔥</div>
@@ -160,7 +160,7 @@ export default function Profile() {
         <div className="settings-row">
           <div>
             <div className="settings-row-label">Milestone · Vision · Steps</div>
-            <div className="settings-row-sub">Your personal study & goal tracker</div>
+            <div className="settings-row-sub">Your personal goal &amp; time tracker</div>
           </div>
         </div>
       </div>

@@ -124,7 +124,7 @@ export default function Home() {
         <div className="qs-card">
           <span className="qs-icon">⏱</span>
           <span className="qs-value">{totalTodayMin > 0 ? fmtDuration(totalTodayMin) : '—'}</span>
-          <span className="qs-label">Studied today</span>
+          <span className="qs-label">Focus time</span>
           <span className="qs-sub">{todaySessions.length} {todaySessions.length === 1 ? 'session' : 'sessions'}</span>
         </div>
         <div className="qs-card accent">

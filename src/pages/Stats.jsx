@@ -184,7 +184,7 @@ export default function Stats() {
         <div>
           <h1 className="page-title">Statistics</h1>
           <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
-            Your study analytics &amp; progress
+            Your activity &amp; progress
           </p>
         </div>
         <div className="stats-filter">
@@ -205,7 +205,7 @@ export default function Stats() {
         <div className="stats-hero-card">
           <span className="stats-hero-icon">⏱</span>
           <span className="stats-hero-value">{totalHours}h</span>
-          <span className="stats-hero-label">Total study time</span>
+          <span className="stats-hero-label">Total focus time</span>
           <span className="stats-hero-sub">{filtered.length} sessions recorded</span>
         </div>
         <div className="stats-hero-card">
@@ -254,7 +254,7 @@ export default function Stats() {
       {trendHasData && (
         <div className="chart-section">
           <div className="chart-section-header">
-            <h2 className="chart-title">30-day study trend</h2>
+            <h2 className="chart-title">30-day activity trend</h2>
             <span className="chart-badge">{fmtDuration(trendData.reduce((a, d) => a + d.minutes, 0))} total</span>
           </div>
           <ResponsiveContainer width="100%" height={140}>
@@ -424,7 +424,7 @@ export default function Stats() {
       {sessions.length === 0 && (
         <div className="empty-state">
           <div style={{ fontSize: '2.5rem', marginBottom: '0.75rem' }}>📊</div>
-          No study sessions yet.<br />
+          No sessions logged yet.<br />
           <strong>Start a timer</strong> on the Today page to track your first session.
         </div>
       )}

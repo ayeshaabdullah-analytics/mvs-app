@@ -15,7 +15,7 @@ const PROMPTS = [
   'What challenged me today?',
   'What am I grateful for right now?',
   'What will I focus on tomorrow?',
-  'What did I learn today?',
+  'What did I discover or learn today?',
   'What drained my energy? What gave me energy?',
 ];
 
