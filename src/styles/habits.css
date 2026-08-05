@@ -416,3 +416,84 @@
 @media (max-width: 440px) {
   .habits-stats { grid-template-columns: 1fr 1fr; }
 }
+
+/* ─────────────────────────────────────────────
+   FLEXIBLE FREQUENCY ADDITIONS
+───────────────────────────────────────────── */
+
+/* Shared field label inside the add form */
+.habit-field-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.4rem;
+}
+
+/* ── Due-status badge (everyNDays) ── */
+.habit-due-badge {
+  flex-shrink: 0;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.22rem 0.55rem;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  background: var(--surface2);
+  white-space: nowrap;
+}
+.habit-due-badge.due {
+  background: var(--primary-soft);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.habit-due-badge.overdue {
+  background: rgba(244, 63, 94, 0.12);
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+/* ── Per-week / per-month count badge ── */
+.habit-freq-badge {
+  flex-shrink: 0;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.22rem 0.55rem;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  background: var(--surface2);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.habit-freq-badge.met {
+  background: rgba(74, 222, 128, 0.12);
+  border-color: var(--success);
+  color: var(--success);
+}
+
+/* ── everyNDays hint line ── */
+.habit-interval-info {
+  padding: 0.45rem 0.6rem;
+  background: var(--surface2);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+.habit-interval-hint {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.habit-interval-hint.overdue-text { color: var(--danger); font-weight: 700; }
+.habit-interval-hint.due-text     { color: var(--primary); font-weight: 600; }
+
+/* ── Goal-met confirmation line ── */
+.habit-goal-met {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--success);
+  text-align: right;
+  margin-top: 0.1rem;
+}
