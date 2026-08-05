@@ -29,48 +29,48 @@
   --space-6: 2rem;
 
   /* Font families */
-  --font-display: 'Syne', system-ui, sans-serif;
-  --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body:    'Inter', sans-serif;
 }
 
 /* ── NEON — Electric Violet + Amber ── */
 [data-theme="neon"] {
-  --primary:            #a855f7;
-  --primary-hover:      #9333ea;
-  --primary-soft:       rgba(168,85,247,0.12);
-  --primary-soft-hover: rgba(168,85,247,0.20);
+  --primary:            #D6336C;
+  --primary-hover:      #b8295a;
+  --primary-soft:       rgba(214,51,108,0.12);
+  --primary-soft-hover: rgba(214,51,108,0.20);
   --primary-text:       #fff;
-  --primary-rgb:        168,85,247;
+  --primary-rgb:        214,51,108;
   --accent:             #f59e0b;
   --accent2:            #fbbf24;
-  --accent3:            #6d28d9;
-  --bg:                 #09071a;
-  --bg2:                #0e0b22;
-  --surface:            #13102a;
-  --surface2:           #1a1638;
-  --surface3:           #231e4a;
-  --surface4:           #2e265c;
-  --border:             #2a2060;
-  --border-soft:        rgba(42,32,96,0.8);
-  --border-glow:        rgba(168,85,247,0.35);
-  --text:               #ede8ff;
-  --text-muted:         #9b85bf;
-  --text-faint:         #4d3d72;
-  --input-bg:           #100d26;
-  --hover:              #1e1a3a;
+  --accent3:            #9d174d;
+  --bg:                 #0F0A0D;
+  --bg2:                #130C10;
+  --surface:            #1A1216;
+  --surface2:           #221820;
+  --surface3:           #2C1F28;
+  --surface4:           #382630;
+  --border:             #2E1F24;
+  --border-soft:        rgba(46,31,36,0.8);
+  --border-glow:        rgba(214,51,108,0.35);
+  --text:               #F5EEF1;
+  --text-muted:         #9E7A88;
+  --text-faint:         #5C3D48;
+  --input-bg:           #120E10;
+  --hover:              #241A1F;
   --danger:             #f87171;
   --danger-soft:        rgba(248,113,113,0.1);
   --success:            #34d399;
   --success-soft:       rgba(52,211,153,0.1);
   --warning:            #f59e0b;
   --warning-soft:       rgba(245,158,11,0.1);
-  --shadow-sm:          0 1px 4px rgba(0,0,0,0.45);
-  --shadow:             0 4px 18px rgba(0,0,0,0.55);
-  --shadow-lg:          0 16px 52px rgba(0,0,0,0.65);
-  --glow:               0 0 18px rgba(168,85,247,0.40);
-  --glow-sm:            0 0 8px rgba(168,85,247,0.22);
-  --gradient-primary:   linear-gradient(135deg, #a855f7 0%, #6d28d9 100%);
-  --gradient-surface:   linear-gradient(180deg, #1a1638 0%, #13102a 100%);
+  --shadow-sm:          0 1px 4px rgba(0,0,0,0.5);
+  --shadow:             0 4px 18px rgba(0,0,0,0.6);
+  --shadow-lg:          0 16px 52px rgba(0,0,0,0.7);
+  --glow:               0 0 18px rgba(214,51,108,0.40);
+  --glow-sm:            0 0 8px rgba(214,51,108,0.22);
+  --gradient-primary:   linear-gradient(135deg, #D6336C 0%, #9d174d 100%);
+  --gradient-surface:   linear-gradient(180deg, #221820 0%, #1A1216 100%);
   --gradient-card:      none;
 }
 
@@ -204,7 +204,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: var(--font-body);
+  font-family: 'Inter', sans-serif;
   font-size: var(--text-base);
   background: var(--bg);
   color: var(--text);
@@ -215,8 +215,8 @@ body {
   background-image: radial-gradient(ellipse 70% 35% at 50% -8%, rgba(var(--primary-rgb), 0.07), transparent);
 }
 
-/* Display font — headings and feature numbers only */
-h1, h2, h3, h4,
+/* Display font — Space Grotesk on ALL headings and key display elements */
+h1, h2, h3, h4, h5, h6,
 .page-title,
 .home-title,
 .sidebar-logo-text,
@@ -229,12 +229,11 @@ h1, h2, h3, h4,
 .ws-value,
 .goals-sum-value,
 .profile-stat-value {
-  font-family: var(--font-display);
-  font-feature-settings: 'ss01', 'cv01';
+  font-family: 'Space Grotesk', sans-serif !important;
 }
 
 a { color: inherit; text-decoration: none; }
-button { font-family: var(--font-body); }
+button { font-family: 'Inter', sans-serif; }
 img { display: block; }
 
 /* ─────────────────────────────────────────────
@@ -338,15 +337,15 @@ img { display: block; }
 .btn-danger:focus-visible { outline: 2px solid var(--danger); outline-offset: 2px; }
 
 /* ─────────────────────────────────────────────
-   CARDS — flat surface, no gradient overlay
+   CARDS — flat surface, border only (no shadow elevation)
 ───────────────────────────────────────────── */
 .card {
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 1.25rem; box-shadow: var(--shadow-sm);
-  transition: box-shadow 0.2s, border-color 0.2s, transform 0.18s;
+  padding: 1.25rem; box-shadow: none;
+  transition: border-color 0.2s, transform 0.18s;
   position: relative; overflow: hidden;
 }
-.card:hover { box-shadow: var(--shadow); border-color: var(--border-glow); transform: translateY(-1px); }
+.card:hover { border-color: var(--border-glow); transform: translateY(-1px); }
 
 /* ─────────────────────────────────────────────
    FORMS
@@ -370,9 +369,12 @@ select option { background: var(--surface2); color: var(--text); }
    TYPOGRAPHY — deliberate hierarchy
 ───────────────────────────────────────────── */
 .page-title {
-  font-family: var(--font-display);
-  font-size: var(--text-xl); font-weight: 800; color: var(--text);
-  letter-spacing: -0.03em; line-height: 1.15;
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-size: 2rem;          /* 32px */
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
 }
 .section-heading {
   font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.1em;
@@ -448,7 +450,7 @@ select option { background: var(--surface2); color: var(--text); }
 }
 
 /* ─────────────────────────────────────────────
-   PAGE HEADER
+   PAGE HEADER — 32px bottom margin enforced
 ───────────────────────────────────────────── */
 .page-header {
   display: flex; align-items: center; justify-content: space-between;

@@ -1,1 +1,10 @@
-/* index.css intentionally empty — global styles loaded via App.jsx import */
+/* ── FONT FOUNDATION — must be first, overrides nothing below ── */
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6,
+.heading,
+.display-text {
+  font-family: 'Space Grotesk', sans-serif !important;
+}

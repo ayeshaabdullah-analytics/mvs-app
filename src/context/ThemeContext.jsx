@@ -6,7 +6,7 @@ import { useAuth } from './AuthContext';
 export const THEMES = { neon: 'neon', sunrise: 'sunrise', arctic: 'arctic', forest: 'forest' };
 
 const THEME_META = {
-  neon:    { icon: '⚡', label: 'Neon',    desc: 'Fuchsia & Purple' },
+  neon:    { icon: '⚡', label: 'Neon',    desc: 'Rose & Crimson' },
   sunrise: { icon: '🌅', label: 'Sunrise', desc: 'Coral & Gold' },
   arctic:  { icon: '❄️', label: 'Arctic',  desc: 'Cyan & Ice' },
   forest:  { icon: '🌿', label: 'Forest',  desc: 'Neon Green' },

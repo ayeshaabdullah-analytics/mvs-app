@@ -40,17 +40,17 @@
   /* First card wider — focus time is most important */
   grid-template-columns: 1.4fr 1fr 1fr 1fr;
   gap: 0.875rem;
-  margin-bottom: 2.25rem;
+  margin-bottom: 2rem; /* 32px */
 }
 
 .qs-card {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--radius-lg); padding: 1.25rem 1.25rem 1rem;
   display: flex; flex-direction: column; gap: 0.25rem;
-  transition: box-shadow 0.18s, border-color 0.18s, transform 0.16s;
+  transition: border-color 0.18s, transform 0.16s;
   position: relative; overflow: hidden;
 }
-.qs-card:hover { box-shadow: var(--shadow); border-color: var(--border-glow); transform: translateY(-2px); }
+.qs-card:hover { border-color: var(--border-glow); transform: translateY(-2px); }
 
 /* First card gets a subtle left accent bar */
 .qs-card:first-child {
@@ -109,11 +109,11 @@
 /* ── Goal block — the main card, slightly larger breathing room ── */
 .home-goal-block {
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); margin-bottom: 1.25rem; overflow: hidden;
-  transition: border-color 0.18s, box-shadow 0.18s;
+  border-radius: var(--radius-lg); margin-bottom: 2rem; overflow: hidden;
+  transition: border-color 0.18s;
   animation: itemAdd 0.26s cubic-bezier(0.16,1,0.3,1) both;
 }
-.home-goal-block:hover { border-color: var(--border-glow); box-shadow: var(--shadow); }
+.home-goal-block:hover { border-color: var(--border-glow); }
 
 .home-goal-header {
   display: flex; align-items: center; justify-content: space-between;

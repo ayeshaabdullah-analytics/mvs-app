@@ -44,7 +44,7 @@
   margin-top: 0.2rem;
 }
 /* Per-theme swatches — solid dominant color */
-.theme-card[data-theme-key="neon"]    .theme-card-swatch { background: #a855f7; }
+.theme-card[data-theme-key="neon"]    .theme-card-swatch { background: #D6336C; }
 .theme-card[data-theme-key="sunrise"] .theme-card-swatch { background: #f97316; }
 .theme-card[data-theme-key="arctic"]  .theme-card-swatch { background: #06b6d4; }
 .theme-card[data-theme-key="forest"]  .theme-card-swatch { background: #10b981; }
