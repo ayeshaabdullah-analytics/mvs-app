@@ -29,7 +29,7 @@
 /* Cycles */
 .focus-cycles { display:flex; gap:0.45rem; justify-content:center; margin-bottom:1.5rem; flex-wrap:wrap; }
 .cycle-dot { width:12px; height:12px; border-radius:50%; background:var(--border); border:2px solid var(--border); transition:all 0.3s; }
-.cycle-dot.done { background:var(--gradient-primary); border-color:var(--primary); box-shadow:var(--glow-sm); }
+.cycle-dot.done { background:var(--primary); border-color:var(--primary); box-shadow:var(--glow-sm); }
 .cycle-dot.active { border-color:var(--primary); background:var(--primary-soft); animation:glow-pulse 1.5s ease infinite; }
 
 /* Ring */
@@ -41,7 +41,7 @@
 .focus-ring-fill.long-break { stroke:var(--accent3); filter:drop-shadow(0 0 12px var(--accent3)); }
 
 .focus-time-block { position:relative; z-index:1; }
-.focus-time { font-size:3.2rem; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:-3px; line-height:1; color:var(--text); }
+.focus-time { font-family: var(--font-display); font-size:3.2rem; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:-3px; line-height:1; color:var(--text); }
 .focus-time.running { color:var(--primary); text-shadow:var(--glow); }
 .focus-time.break   { color:var(--success); text-shadow:0 0 20px rgba(74,222,128,0.4); }
 .focus-status { font-size:0.65rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-faint); margin-top:0.3rem; }
@@ -56,12 +56,11 @@
 .focus-controls { display:flex; gap:0.65rem; justify-content:center; margin-bottom:1rem; flex-wrap:wrap; }
 .focus-start-btn {
   background:var(--primary); color:var(--primary-text,#fff); border:none; border-radius:99px;
-  padding:0.75rem 2.5rem; font-size:0.9375rem; font-weight:600; cursor:pointer; font-family:inherit;
-  transition:background 0.14s, transform 0.12s;
+  padding:0.75rem 2.5rem; font-size:0.9375rem; font-weight:600; cursor:pointer; font-family:var(--font-body);
+  transition:background 0.14s, transform 0.1s, box-shadow 0.14s;
+  box-shadow: 0 4px 16px rgba(var(--primary-rgb),0.35);
 }
-.focus-start-btn:hover { background:var(--primary-hover); transform:translateY(-1px); }
-.focus-start-btn:active { transform:translateY(0); }
-.focus-start-btn:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(0,0,0,0.3),var(--glow); }
+.focus-start-btn:hover { background:var(--primary-hover); transform:translateY(-2px); box-shadow:0 8px 28px rgba(var(--primary-rgb),0.4); }
 .focus-start-btn:active { transform:translateY(0); }
 .focus-skip-btn {
   background:var(--surface2); border:1px solid var(--border); color:var(--text-muted); border-radius:50px;

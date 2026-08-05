@@ -43,13 +43,13 @@ const ACHIEVEMENTS = [
 ];
 
 const CATEGORIES = [
-  { key: 'all',     label: 'All',         icon: '🏆' },
-  { key: 'focus',   label: 'Focus Time',  icon: '⏱️' },
-  { key: 'session', label: 'Sessions',    icon: '⚡' },
-  { key: 'streak',  label: 'Streaks',     icon: '🔥' },
-  { key: 'goals',   label: 'Goals',       icon: '🎯' },
-  { key: 'journal', label: 'Journal',     icon: '📝' },
-  { key: 'special', label: 'Special',     icon: '✨' },
+  { key: 'all',     label: 'All'         },
+  { key: 'focus',   label: 'Focus Time'  },
+  { key: 'session', label: 'Sessions'    },
+  { key: 'streak',  label: 'Streaks'     },
+  { key: 'goals',   label: 'Goals'       },
+  { key: 'journal', label: 'Journal'     },
+  { key: 'special', label: 'Special'     },
 ];
 
 function fmtDate(ts) {
@@ -192,7 +192,7 @@ export default function Achievements() {
           <button key={c.key}
             className={`ach-filter-btn${catFilter === c.key ? ' active' : ''}`}
             onClick={() => setCatFilter(c.key)}>
-            {c.icon} {c.label}
+            {c.label}
           </button>
         ))}
       </div>
@@ -223,7 +223,7 @@ export default function Achievements() {
 
               <div className="ach-name">{unlocked ? a.name : '???'}</div>
               <div className="ach-desc">{unlocked ? a.desc : 'Keep going to unlock this achievement'}</div>
-              <span className="ach-xp">⚡ {a.xp} XP</span>
+              <span className="ach-xp">{a.xp} XP</span>
             </div>
           );
         })}
@@ -239,7 +239,7 @@ export default function Achievements() {
             <div className="ach-modal-how">
               <strong>How to earn: </strong>{selected.how}
             </div>
-            <span className="ach-xp" style={{ fontSize:'0.78rem' }}>⚡ {selected.xp} XP</span>
+            <span className="ach-xp" style={{ fontSize:'0.78rem' }}>{selected.xp} XP</span>
             {unlockedIds[selected.id] && (
               <div className="ach-earned-date" style={{ color:'var(--success)', fontWeight:700 }}>
                 ✓ Earned!

@@ -293,22 +293,22 @@ export default function Habits() {
       {/* Stats row */}
       <div className="habits-stats stagger animate-in">
         <div className="habit-stat-card">
-          <span className="habit-stat-icon">📋</span>
+          <svg className="habit-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
           <span className="habit-stat-value">{totalHabits}</span>
           <span className="habit-stat-label">Total Habits</span>
         </div>
         <div className="habit-stat-card">
-          <span className="habit-stat-icon">✅</span>
+          <svg className="habit-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
           <span className="habit-stat-value">{todayPct}%</span>
           <span className="habit-stat-label">Today Done</span>
         </div>
         <div className="habit-stat-card">
-          <span className="habit-stat-icon">🔥</span>
+          <svg className="habit-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           <span className="habit-stat-value">{longestStreak}</span>
           <span className="habit-stat-label">Best Streak</span>
         </div>
         <div className="habit-stat-card">
-          <span className="habit-stat-icon">⚡</span>
+          <svg className="habit-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
           <span className="habit-stat-value">{totalCheckins}</span>
           <span className="habit-stat-label">Check-ins</span>
         </div>
@@ -433,7 +433,9 @@ export default function Habits() {
       {/* Habits grid */}
       {filteredHabits.length === 0 ? (
         <div className="empty-state">
-          <span className="empty-icon">🌱</span>
+          <span className="empty-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          </span>
           <span className="empty-title">No habits yet</span>
           <span className="empty-desc">Build consistency one day at a time. Create your first habit to get started.</span>
           <button className="empty-cta" onClick={() => setShowForm(true)}>+ New Habit</button>

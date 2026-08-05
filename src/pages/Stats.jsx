@@ -216,19 +216,19 @@ export default function Stats() {
       {/* ── Hero cards ── */}
       <div className="stats-hero">
         <div className="stats-hero-card">
-          <span className="stats-hero-icon">⏱</span>
+          <svg className="stats-hero-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           <span className="stats-hero-value">{totalHours}h</span>
           <span className="stats-hero-label">Total focus time</span>
           <span className="stats-hero-sub">{filtered.length} sessions recorded</span>
         </div>
         <div className="stats-hero-card">
-          <span className="stats-hero-icon">🔥</span>
+          <svg className="stats-hero-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           <span className="stats-hero-value" style={{ color: 'var(--warning)' }}>{streak}</span>
           <span className="stats-hero-label">Day streak</span>
           <span className="stats-hero-sub">{streak > 0 ? 'Currently active' : 'Start today!'}</span>
         </div>
         <div className="stats-hero-card">
-          <span className="stats-hero-icon">📈</span>
+          <svg className="stats-hero-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
           <span className="stats-hero-value" style={{ color: 'var(--success)' }}>{fmtDuration(avgSession)}</span>
           <span className="stats-hero-label">Avg session</span>
           <span className="stats-hero-sub">Best: {fmtDuration(longestSession)}</span>
@@ -246,7 +246,7 @@ export default function Stats() {
           <span className="stat-label">Sessions</span>
         </div>
         <div className="stat-card">
-          <span className="stat-value">{streak}{streak > 0 ? ' 🔥' : ''}</span>
+          <span className="stat-value">{streak}</span>
           <span className="stat-label">Streak</span>
         </div>
         <div className="stat-card">
@@ -436,10 +436,12 @@ export default function Stats() {
 
       {sessions.length === 0 && (
         <div className="empty-state">
-          <span className="empty-icon">📊</span>
+          <span className="empty-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+          </span>
           <span className="empty-title">No sessions recorded yet</span>
           <span className="empty-desc">Start a focus timer on the Today page — your activity will appear here as charts and streaks.</span>
-          <a href="/"><button className="empty-cta">▶ Start a Session</button></a>
+          <a href="/"><button className="empty-cta">Start a Session</button></a>
         </div>
       )}
     </div>

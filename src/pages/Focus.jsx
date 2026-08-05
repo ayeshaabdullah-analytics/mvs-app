@@ -4,10 +4,10 @@ import { getMondayOf, toISO, FULL_DAYS, fmtDuration } from '../utils/dates';
 import '../styles/focus.css';
 
 const MODES = [
-  { key: 'pomodoro',   label: '🍅 Focus',       mins: 25, type: 'work',       desc: '25 min deep work' },
-  { key: 'short',      label: '☕ Short break',  mins: 5,  type: 'break',      desc: '5 min breather'   },
-  { key: 'long',       label: '🌴 Long break',   mins: 15, type: 'long-break', desc: '15 min recharge'  },
-  { key: 'custom',     label: '⚙️ Custom',        mins: 45, type: 'work',       desc: 'Your duration'    },
+  { key: 'pomodoro',   label: 'Focus',       mins: 25, type: 'work',       desc: '25 min deep work' },
+  { key: 'short',      label: 'Short break', mins: 5,  type: 'break',      desc: '5 min breather'   },
+  { key: 'long',       label: 'Long break',  mins: 15, type: 'long-break', desc: '15 min recharge'  },
+  { key: 'custom',     label: 'Custom',      mins: 45, type: 'work',       desc: 'Your duration'    },
 ];
 
 const CIRCUMFERENCE = 565; // 2π × 90
@@ -260,7 +260,7 @@ export default function Focus() {
 
         {status === 'done' && currentMode.type === 'work' && (
           <p style={{ fontSize:'0.85rem', color:'var(--success)', fontWeight:600, marginTop:'0.25rem' }}>
-            🎉 Focus session saved! Take a break.
+            Session complete — take a break.
           </p>
         )}
       </div>
@@ -298,8 +298,8 @@ export default function Focus() {
                 <span style={{ flex:1, fontSize:'0.84rem', color:'var(--text)', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>
                   {s.subject || goal?.title || 'Session'}
                 </span>
-                {s.pomodoroType === 'work' && <span className="focus-completed-badge">🍅 focus</span>}
-                {s.retroactive && <span className="focus-retro-badge">📅 logged</span>}
+                {s.pomodoroType === 'work' && <span className="focus-completed-badge">focus</span>}
+                {s.retroactive && <span className="focus-retro-badge">logged</span>}
               </div>
             );
           })}

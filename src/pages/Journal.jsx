@@ -198,14 +198,16 @@ export default function Journal() {
             onChange={(e) => setTagInput(e.target.value)} onKeyDown={addTag} />
         </div>
         <button type="submit" className="btn-primary" disabled={saving || !body.trim()}>
-          {saving ? 'Saving…' : '📝 Save Entry'}
+          {saving ? 'Saving…' : 'Save Entry'}
         </button>
       </form>
 
       {/* Entry list */}
       {sorted.length === 0 && (
         <div className="empty-state">
-          <span className="empty-icon">📔</span>
+          <span className="empty-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </span>
           <span className="empty-title">No entries yet</span>
           <span className="empty-desc">Write your first reflection above. Even two sentences is enough to start.</span>
         </div>

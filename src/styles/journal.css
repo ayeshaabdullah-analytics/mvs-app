@@ -36,7 +36,7 @@
 .journal-entry-mood { font-size:1.4rem; flex-shrink:0; }
 .journal-entry-meta { flex:1; min-width:0; }
 .journal-entry-date { font-size:0.78rem; font-weight:700; color:var(--text-muted); }
-.journal-entry-title { font-size:0.88rem; font-weight:700; color:var(--text); margin-top:0.05rem; }
+.journal-entry-title { font-family: var(--font-display); font-size: var(--text-sm); font-weight: 700; color: var(--text); margin-top: 0.05rem; }
 .journal-entry-actions { display:flex; gap:0.3rem; opacity:0; transition:opacity 0.15s; }
 .journal-entry:hover .journal-entry-actions { opacity:1; }
 

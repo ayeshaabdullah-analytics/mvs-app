@@ -137,25 +137,33 @@ export default function Home() {
       {/* ── Quick stats ── */}
       <div className="quick-stats stagger animate-in">
         <div className="qs-card">
-          <span className="qs-icon">⏱</span>
+          <svg className="qs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
           <span className="qs-value">{totalTodayMin > 0 ? fmtDuration(totalTodayMin) : '—'}</span>
           <span className="qs-label">Focus time</span>
           <span className="qs-sub">{todaySessions.length} {todaySessions.length === 1 ? 'session' : 'sessions'}</span>
         </div>
         <div className="qs-card accent">
-          <span className="qs-icon">✅</span>
+          <svg className="qs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
           <span className="qs-value">{completedTasksWeek}</span>
           <span className="qs-label">Tasks done</span>
           <span className="qs-sub">{totalTasksWeek.length > 0 ? `of ${totalTasksWeek.length} this week` : 'this week'}</span>
         </div>
         <div className="qs-card accent2">
-          <span className="qs-icon">🔥</span>
+          <svg className="qs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
           <span className="qs-value">{streak}</span>
           <span className="qs-label">Day streak</span>
           <span className="qs-sub">{streak > 0 ? 'Keep it up!' : 'Start today'}</span>
         </div>
         <div className="qs-card accent3">
-          <span className="qs-icon">🎯</span>
+          <svg className="qs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+          </svg>
           <span className="qs-value">{thisWeekGoals.length}</span>
           <span className="qs-label">Active goals</span>
           <span className="qs-sub">{weeklyGoals.filter(g => g.status === 'done').length} completed ever</span>
@@ -177,7 +185,9 @@ export default function Home() {
       {/* ── Empty state ── */}
       {thisWeekGoals.length === 0 && (
         <div className="empty-state">
-          <span className="empty-icon">🚀</span>
+          <span className="empty-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </span>
           <span className="empty-title">No goals this week yet</span>
           <span className="empty-desc">Set a weekly goal to see your tasks here and start tracking your progress.</span>
           <a href="/weekly"><button className="empty-cta">+ Add a Weekly Goal</button></a>

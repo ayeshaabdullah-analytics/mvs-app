@@ -69,7 +69,7 @@ export default function Profile() {
         <div className="profile-info">
           <div className="profile-name">{displayName}</div>
           <div className="profile-email">{user?.email}</div>
-          {joinedDate && <div className="profile-joined">📅 Joined {joinedDate}</div>}
+          {joinedDate && <div className="profile-joined">Joined {joinedDate}</div>}
           {achievements.length > 0 && (
             <div className="profile-badges">
               {achievements.map((a) => (
@@ -87,7 +87,7 @@ export default function Profile() {
           <div className="profile-stat-label">Focus time</div>
         </div>
         <div className="profile-stat-card">
-          <div className="profile-stat-value" style={{ color:'var(--warning)' }}>{streak} 🔥</div>
+          <div className="profile-stat-value" style={{ color:'var(--warning)' }}>{streak}</div>
           <div className="profile-stat-label">Day streak</div>
         </div>
         <div className="profile-stat-card">
@@ -110,7 +110,7 @@ export default function Profile() {
 
       {/* Theme picker */}
       <div className="theme-picker">
-        <h2>🎨 Choose theme</h2>
+        <h2>Choose theme</h2>
         <div className="theme-grid">
           {Object.keys(themes).map((t) => (
             <div key={t} data-theme-key={t} className={`theme-card${theme === t ? ' active' : ''}`} onClick={() => setTheme(t)}>
@@ -125,7 +125,7 @@ export default function Profile() {
 
       {/* Settings */}
       <div className="profile-section">
-        <h2>⚙️ Preferences</h2>
+        <h2>Preferences</h2>
         <div className="settings-row">
           <div>
             <div className="settings-row-label">Timer sounds</div>
@@ -150,7 +150,7 @@ export default function Profile() {
 
       {/* About */}
       <div className="profile-section">
-        <h2>ℹ️ About MVS</h2>
+        <h2>About MVS</h2>
         <div className="settings-row">
           <div>
             <div className="settings-row-label">Version</div>
@@ -167,7 +167,7 @@ export default function Profile() {
 
       {/* Danger zone */}
       <div className="profile-section danger-zone">
-        <h2>⚠️ Danger zone</h2>
+        <h2>Danger zone</h2>
         <div className="settings-row">
           <div>
             <div className="settings-row-label" style={{ color:'var(--danger)' }}>Sign out of MVS</div>

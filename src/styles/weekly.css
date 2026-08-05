@@ -55,16 +55,16 @@
 .ws-card:hover { box-shadow: var(--shadow); border-color: var(--border-glow); }
 
 .ws-value {
-  font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+  font-family: var(--font-display);
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--primary);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
   line-height: 1;
   font-variant-numeric: tabular-nums;
 }
 .ws-label {
-  font-size: 0.7rem;
+  font-size: var(--text-xs);
   font-weight: 600;
   color: var(--text-muted);
   margin-top: 0.3rem;
@@ -113,7 +113,7 @@
 }
 
 .density-bar-fill {
-  background: var(--gradient-primary);
+  background: var(--primary);
   border-radius: 4px;
   transition: height 0.5s cubic-bezier(0.34,1.56,0.64,1);
   min-height: 0;
@@ -252,7 +252,7 @@
 }
 .wg-progress-fill {
   height: 100%;
-  background: var(--gradient-primary);
+  background: var(--primary);
   border-radius: 2px;
   transition: width 0.55s cubic-bezier(0.34,1.56,0.64,1);
 }
@@ -355,21 +355,21 @@
   display: flex;
   align-items: center;
   gap: 0.38rem;
-  background: var(--gradient-primary);
+  background: var(--primary);
   border: none;
-  color: #fff;
+  color: var(--primary-text, #fff);
   border-radius: var(--radius-sm);
   padding: 0.45rem 1rem;
-  font-size: 0.82rem;
+  font-size: var(--text-sm);
   font-weight: 700;
   cursor: pointer;
   transition: all 0.18s;
   white-space: nowrap;
-  font-family: inherit;
+  font-family: var(--font-body);
   flex-shrink: 0;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2), var(--glow-sm);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
-.ai-btn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.25), var(--glow); }
+.ai-btn:hover:not(:disabled) { transform: translateY(-1px); background: var(--primary-hover); box-shadow: 0 4px 14px rgba(var(--primary-rgb),0.35); }
 .ai-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
 /* ── AI Draft ── */
