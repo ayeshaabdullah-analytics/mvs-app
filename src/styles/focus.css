@@ -12,8 +12,7 @@
 .focus-mode-btn.active {
   background:var(--primary-soft); border-color:var(--primary); color:var(--primary);
   box-shadow:0 0 0 1px var(--primary-soft),var(--glow-sm);
-}
-.focus-mode-label { display:block; font-size:0.72rem; opacity:0.7; margin-top:0.2rem; }
+}.focus-mode-label { display:block; font-size:0.72rem; opacity:0.7; margin-top:0.2rem; }
 
 /* Main timer card */
 .focus-card {
@@ -57,11 +56,12 @@
 /* Controls */
 .focus-controls { display:flex; gap:0.65rem; justify-content:center; margin-bottom:1rem; flex-wrap:wrap; }
 .focus-start-btn {
-  background:var(--gradient-primary); color:#fff; border:none; border-radius:50px;
+  background:var(--gradient-primary); color:var(--primary-text,#fff); border:none; border-radius:50px;
   padding:0.8rem 2.8rem; font-size:1rem; font-weight:800; cursor:pointer; font-family:inherit;
   box-shadow:0 4px 20px rgba(0,0,0,0.25),var(--glow); transition:all 0.18s;
 }
 .focus-start-btn:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(0,0,0,0.3),var(--glow); }
+.focus-start-btn:active { transform:translateY(0); }
 .focus-skip-btn {
   background:var(--surface2); border:1px solid var(--border); color:var(--text-muted); border-radius:50px;
   padding:0.7rem 1.4rem; font-size:0.88rem; font-weight:600; cursor:pointer; font-family:inherit; transition:all 0.16s;

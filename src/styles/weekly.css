@@ -190,14 +190,15 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: box-shadow 0.2s, border-color 0.2s;
-  animation: fadeIn 0.24s ease both;
+  transition: box-shadow 0.22s, border-color 0.22s, transform 0.22s;
+  animation: itemAdd 0.28s cubic-bezier(0.16,1,0.3,1) both;
   background-image: var(--gradient-card);
 }
-.wg-card:hover { box-shadow: var(--shadow); }
+.wg-card:hover { box-shadow: var(--shadow); transform: translateY(-1px); }
 .wg-card.expanded {
   border-color: var(--border-glow);
   box-shadow: 0 0 0 1px var(--primary-soft), var(--shadow);
+  transform: none;
 }
 
 .wg-header {
@@ -458,11 +459,12 @@
   background: var(--surface2);
   border-radius: var(--radius-sm);
   border: 1px solid transparent;
-  transition: all 0.16s;
-  animation: fadeIn 0.16s ease both;
+  transition: all 0.18s cubic-bezier(0.16,1,0.3,1);
+  animation: itemAdd 0.26s cubic-bezier(0.16,1,0.3,1) both;
 }
-.task-item:hover { border-color: var(--border); background: var(--surface3); }
+.task-item:hover { border-color: var(--border); background: var(--surface3); transform: translateX(2px); }
 .task-item.done .task-desc { text-decoration: line-through; opacity: 0.45; }
+.task-item.done { opacity: 0.7; }
 
 .task-day-badge {
   font-size: 0.66rem;

@@ -140,7 +140,18 @@ export default function Weekly() {
 
   const tasksFor = (goalId) => allTasks.filter((t) => t.weeklyGoalId === goalId);
 
-  if (loading) return <div className="spinner" />;
+  if (loading) return (
+    <div className="skeleton-page animate-in">
+      <div className="skeleton-header">
+        <div className="skeleton skeleton-title" style={{ width:'10rem' }} />
+        <div className="skeleton skeleton-text" style={{ width:'10rem', height:'2rem', borderRadius:'var(--radius-sm)' }} />
+      </div>
+      <div className="skeleton-grid-4">
+        {[1,2,3,4].map(i => <div key={i} className="skeleton-card"><div className="skeleton skeleton-text" style={{ width:'40%' }} /><div className="skeleton skeleton-title" style={{ width:'55%' }} /></div>)}
+      </div>
+      {[1,2].map(i => <div key={i} className="skeleton-card" style={{ height:'5rem', marginBottom:'0.75rem' }} />)}
+    </div>
+  );
 
   return (
     <div className="layout animate-in">
@@ -240,9 +251,10 @@ export default function Weekly() {
       {/* ── Empty state ── */}
       {thisWeekGoals.length === 0 && !showAdd && (
         <div className="empty-state">
-          <div style={{ fontSize: '2.5rem', marginBottom: '0.75rem' }}>📅</div>
-          No goals for this week yet.<br />
-          <strong>Add one above</strong> to start planning.
+          <span className="empty-icon">📅</span>
+          <span className="empty-title">Nothing planned this week</span>
+          <span className="empty-desc">Add a weekly goal and let AI break it into daily tasks for you.</span>
+          <button className="empty-cta" onClick={() => setShowAdd(true)}>+ Add Weekly Goal</button>
         </div>
       )}
 

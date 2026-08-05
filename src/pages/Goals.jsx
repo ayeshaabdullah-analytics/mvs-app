@@ -57,7 +57,17 @@ export default function Goals() {
     return list;
   };
 
-  if (loading) return <div className="spinner" />;
+  if (loading) return (
+    <div className="skeleton-page animate-in">
+      <div className="skeleton-header">
+        <div className="skeleton skeleton-title" style={{ width:'12rem' }} />
+        <div className="skeleton skeleton-text" style={{ width:'8rem', height:'2rem', borderRadius:'var(--radius-sm)' }} />
+      </div>
+      <div className="skeleton-grid-2" style={{ gridTemplateColumns:'repeat(3,1fr)' }}>
+        {[1,2,3].map(i => <div key={i} className="skeleton-card" style={{ height:'18rem' }} />)}
+      </div>
+    </div>
+  );
 
   const totalActive = goals.filter((g) => g.status === 'active').length;
   const totalDone   = goals.filter((g) => g.status === 'done').length;

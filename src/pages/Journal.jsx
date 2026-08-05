@@ -98,7 +98,16 @@ export default function Journal() {
     return todayEntry ? MOODS.find((m) => m.value === todayEntry.mood) : null;
   }, [entries]);
 
-  if (loading) return <div className="spinner" />;
+  if (loading) return (
+    <div className="skeleton-page animate-in">
+      <div className="skeleton-header">
+        <div className="skeleton skeleton-title" style={{ width:'6rem' }} />
+      </div>
+      <div className="skeleton-card" style={{ height:'3rem', borderRadius:'var(--radius-sm)', marginBottom:'0.5rem' }} />
+      <div className="skeleton-card" style={{ height:'16rem' }} />
+      {[1,2].map(i => <div key={i} className="skeleton-card" style={{ height:'7rem', marginBottom:'0.5rem' }} />)}
+    </div>
+  );
 
   return (
     <div className="layout animate-in">
@@ -196,8 +205,9 @@ export default function Journal() {
       {/* Entry list */}
       {sorted.length === 0 && (
         <div className="empty-state">
-          <div style={{ fontSize:'2.5rem', marginBottom:'0.75rem' }}>📔</div>
-          No entries yet. Write your first reflection above!
+          <span className="empty-icon">📔</span>
+          <span className="empty-title">No entries yet</span>
+          <span className="empty-desc">Write your first reflection above. Even two sentences is enough to start.</span>
         </div>
       )}
 

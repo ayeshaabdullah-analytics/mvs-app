@@ -200,7 +200,7 @@
 }
 .habits-filter-btn.active {
   background: var(--primary);
-  color: #fff;
+  color: var(--primary-text, #fff);
   font-weight: 700;
   box-shadow: 0 2px 8px rgba(0,0,0,0.25);
 }
@@ -221,8 +221,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
-  transition: all 0.2s;
-  animation: fadeIn 0.24s ease both;
+  transition: all 0.22s cubic-bezier(0.16,1,0.3,1);
+  animation: itemAdd 0.28s cubic-bezier(0.16,1,0.3,1) both;
   background-image: var(--gradient-card);
   position: relative;
   overflow: hidden;
@@ -240,7 +240,7 @@
 .habit-card:hover {
   box-shadow: var(--shadow);
   border-color: var(--border-glow);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .habit-card-header {
@@ -336,17 +336,19 @@
   justify-content: center;
   font-size: 0.75rem;
   cursor: pointer;
-  transition: all 0.18s;
+  transition: all 0.18s cubic-bezier(0.34,1.56,0.64,1);
   color: transparent;
 }
-.habit-day-check:hover { border-color: var(--primary); background: var(--primary-soft); }
+.habit-day-check:hover { border-color: var(--primary); background: var(--primary-soft); transform: scale(1.12); }
+.habit-day-check:active { transform: scale(0.92); }
 .habit-day-check.checked {
   background: var(--gradient-primary);
   border-color: transparent;
-  color: #fff;
+  color: var(--primary-text, #fff);
   box-shadow: var(--glow-sm);
+  animation: checkPop 0.28s cubic-bezier(0.34,1.56,0.64,1) both;
 }
-.habit-day-check.future { cursor: default; opacity: 0.4; pointer-events: none; }
+.habit-day-check.future { cursor: default; opacity: 0.35; pointer-events: none; transform: none; }
 
 /* ── Completion rate bar ── */
 .habit-completion-bar {
@@ -387,7 +389,7 @@
   justify-content: center;
   gap: 0.45rem;
   background: var(--gradient-primary);
-  color: #fff;
+  color: var(--primary-text, #fff);
   border: none;
   border-radius: var(--radius-sm);
   padding: 0.55rem 1rem;
@@ -399,6 +401,7 @@
   box-shadow: 0 2px 12px rgba(0,0,0,0.2), var(--glow-sm);
 }
 .habit-checkin-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 18px rgba(0,0,0,0.25), var(--glow); }
+.habit-checkin-btn:active { transform: translateY(1px); box-shadow: none; }
 .habit-checkin-btn:disabled {
   background: var(--success-soft);
   color: var(--success);

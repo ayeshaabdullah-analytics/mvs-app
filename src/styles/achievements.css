@@ -130,11 +130,11 @@
   align-items: center;
   gap: 0.65rem;
   text-align: center;
-  transition: all 0.22s;
+  transition: all 0.22s cubic-bezier(0.16,1,0.3,1);
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  animation: fadeIn 0.24s ease both;
+  animation: itemAdd 0.26s cubic-bezier(0.16,1,0.3,1) both;
 }
 
 .ach-card.unlocked {
@@ -143,15 +143,15 @@
   box-shadow: var(--shadow-sm), var(--glow-sm);
 }
 .ach-card.unlocked:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px) scale(1.01);
   box-shadow: var(--shadow), var(--glow);
 }
 
 .ach-card.locked {
-  opacity: 0.55;
-  filter: grayscale(0.3);
+  opacity: 0.5;
+  filter: grayscale(0.4);
 }
-.ach-card.locked:hover { opacity: 0.75; }
+.ach-card.locked:hover { opacity: 0.72; transform: translateY(-2px); }
 
 /* Shine effect on unlocked */
 .ach-card.unlocked::before {
@@ -249,7 +249,7 @@
   font-size: 0.6rem;
   font-weight: 800;
   background: var(--gradient-primary);
-  color: #fff;
+  color: var(--primary-text, #fff);
   border-radius: 50px;
   padding: 0.12rem 0.42rem;
   letter-spacing: 0.06em;

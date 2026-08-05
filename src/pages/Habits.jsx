@@ -232,7 +232,20 @@ export default function Habits() {
     }));
   };
 
-  if (loading) return <div className="layout"><div className="spinner" /></div>;
+  if (loading) return (
+    <div className="skeleton-page animate-in">
+      <div className="skeleton-header">
+        <div className="skeleton skeleton-title" style={{ width:'8rem' }} />
+        <div className="skeleton skeleton-text" style={{ width:'7rem', height:'2.2rem', borderRadius:'var(--radius-sm)' }} />
+      </div>
+      <div className="skeleton-grid-4">
+        {[1,2,3,4].map(i => <div key={i} className="skeleton-card"><div className="skeleton skeleton-text" style={{ width:'40%' }} /><div className="skeleton skeleton-title" style={{ width:'55%' }} /></div>)}
+      </div>
+      <div className="skeleton-grid-2">
+        {[1,2,3,4].map(i => <div key={i} className="skeleton-card" style={{ height:'11rem' }} />)}
+      </div>
+    </div>
+  );
 
   return (
     <div className="layout animate-in">
@@ -407,9 +420,10 @@ export default function Habits() {
       {/* Habits grid */}
       {filteredHabits.length === 0 ? (
         <div className="empty-state">
-          <div style={{ fontSize:'2.5rem', marginBottom:'0.5rem' }}>🌱</div>
-          <strong>No habits yet</strong><br />
-          Create your first habit to start building consistency
+          <span className="empty-icon">🌱</span>
+          <span className="empty-title">No habits yet</span>
+          <span className="empty-desc">Build consistency one day at a time. Create your first habit to get started.</span>
+          <button className="empty-cta" onClick={() => setShowForm(true)}>+ New Habit</button>
         </div>
       ) : (
         <div className="habits-grid stagger">

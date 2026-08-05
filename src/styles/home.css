@@ -62,7 +62,7 @@
 }
 .toggle-btn.active {
   background: var(--primary);
-  color: #fff;
+  color: var(--primary-text, #fff);
   font-weight: 700;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
@@ -195,8 +195,8 @@
   border-radius: var(--radius-lg);
   margin-bottom: 1.1rem;
   overflow: hidden;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  animation: fadeIn 0.28s ease both;
+  transition: border-color 0.22s, box-shadow 0.22s, transform 0.22s;
+  animation: itemAdd 0.28s cubic-bezier(0.16,1,0.3,1) both;
   background-image: var(--gradient-card);
   position: relative;
 }
@@ -209,7 +209,7 @@
   opacity: 0;
   transition: opacity 0.2s;
 }
-.home-goal-block:hover { border-color: var(--border-glow); box-shadow: var(--shadow); }
+.home-goal-block:hover { border-color: var(--border-glow); box-shadow: var(--shadow); transform: translateY(-1px); }
 .home-goal-block:hover::before { opacity: 1; }
 
 .home-goal-header {
@@ -374,7 +374,7 @@
   flex-shrink: 0;
   opacity: 0;
   transition: opacity 0.18s, transform 0.18s;
-  color: #fff;
+  color: var(--primary-text, #fff);
   font-size: 0.6rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }

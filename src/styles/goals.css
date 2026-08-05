@@ -106,7 +106,7 @@
 }
 .goals-filter-btn.active {
   background: var(--primary);
-  color: #fff;
+  color: var(--primary-text, #fff);
   font-weight: 700;
   box-shadow: 0 2px 8px rgba(0,0,0,0.25);
 }
@@ -211,17 +211,18 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 0.85rem 0.9rem;
-  transition: all 0.18s;
-  animation: fadeIn 0.2s ease both;
+  transition: all 0.2s cubic-bezier(0.16,1,0.3,1);
+  animation: itemAdd 0.26s cubic-bezier(0.16,1,0.3,1) both;
   position: relative;
 }
 .goal-item:hover {
   border-color: var(--border-glow);
   box-shadow: var(--shadow-sm);
   background: var(--surface3);
+  transform: translateX(2px);
 }
 .goal-item.done { opacity: 0.45; }
-.goal-item.done:hover { opacity: 0.65; }
+.goal-item.done:hover { opacity: 0.65; transform: none; }
 
 .goal-item-row {
   display: flex;

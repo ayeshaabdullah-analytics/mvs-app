@@ -28,7 +28,7 @@
 }
 .filter-btn.active {
   background: var(--primary);
-  color: #fff;
+  color: var(--primary-text, #fff);
   font-weight: 700;
   box-shadow: 0 2px 8px rgba(0,0,0,0.25);
 }
@@ -49,7 +49,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  transition: all 0.2s;
+  transition: all 0.22s cubic-bezier(0.16,1,0.3,1);
   background-image: var(--gradient-card);
   position: relative;
   overflow: hidden;
@@ -63,7 +63,7 @@
   opacity: 0;
   transition: opacity 0.2s;
 }
-.stats-hero-card:hover { box-shadow: var(--shadow); border-color: var(--border-glow); }
+.stats-hero-card:hover { box-shadow: var(--shadow); border-color: var(--border-glow); transform: translateY(-2px); }
 .stats-hero-card:hover::before { opacity: 1; }
 
 .stats-hero-icon {
@@ -109,12 +109,12 @@
   flex-direction: column;
   align-items: center;
   gap: 0.35rem;
-  transition: all 0.2s;
-  animation: fadeIn 0.2s ease both;
+  transition: all 0.22s cubic-bezier(0.16,1,0.3,1);
+  animation: itemAdd 0.26s cubic-bezier(0.16,1,0.3,1) both;
   background-image: var(--gradient-card);
   position: relative;
 }
-.stat-card:hover { box-shadow: var(--shadow); border-color: var(--border-glow); }
+.stat-card:hover { box-shadow: var(--shadow); border-color: var(--border-glow); transform: translateY(-2px); }
 
 .stat-value {
   font-size: 1.7rem;
@@ -310,9 +310,10 @@
   border-radius: var(--radius-sm);
   font-size: 0.83rem;
   border: 1px solid transparent;
-  transition: border-color 0.14s;
+  transition: all 0.18s;
+  animation: itemAdd 0.22s cubic-bezier(0.16,1,0.3,1) both;
 }
-.session-row:hover { border-color: var(--border); }
+.session-row:hover { border-color: var(--border); background: var(--surface3); transform: translateX(2px); }
 
 .session-row-time {
   color: var(--primary);

@@ -92,7 +92,22 @@ export default function Home() {
   const hour = new Date().getHours();
   const greeting = hour < 12 ? 'Good morning ☀️' : hour < 18 ? 'Good afternoon 👋' : 'Good evening 🌙';
 
-  if (loading) return <div className="spinner" />;
+  if (loading) return (
+    <div className="skeleton-page animate-in">
+      <div className="skeleton-header">
+        <div style={{ display:'flex', flexDirection:'column', gap:'0.5rem', flex:1 }}>
+          <div className="skeleton skeleton-text" style={{ width:'5rem' }} />
+          <div className="skeleton skeleton-title" style={{ width:'14rem' }} />
+        </div>
+        <div className="skeleton skeleton-text" style={{ width:'6rem', height:'2rem', borderRadius:'var(--radius-sm)' }} />
+      </div>
+      <div className="skeleton-grid-4">
+        {[1,2,3,4].map(i => <div key={i} className="skeleton-card"><div className="skeleton skeleton-text" style={{ width:'40%' }} /><div className="skeleton skeleton-title" style={{ width:'55%' }} /></div>)}
+      </div>
+      <div className="skeleton-card" style={{ height:'8rem' }} />
+      <div className="skeleton-card" style={{ height:'12rem' }} />
+    </div>
+  );
 
   return (
     <div className="layout animate-in">
@@ -162,9 +177,10 @@ export default function Home() {
       {/* ── Empty state ── */}
       {thisWeekGoals.length === 0 && (
         <div className="empty-state">
-          <div style={{ fontSize: '2.5rem', marginBottom: '0.75rem' }}>🚀</div>
-          No active goals this week yet.<br />
-          Head to <strong>Weekly</strong> to add one and get started.
+          <span className="empty-icon">🚀</span>
+          <span className="empty-title">No goals this week yet</span>
+          <span className="empty-desc">Set a weekly goal to see your tasks here and start tracking your progress.</span>
+          <a href="/weekly"><button className="empty-cta">+ Add a Weekly Goal</button></a>
         </div>
       )}
 

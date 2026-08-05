@@ -174,7 +174,20 @@ export default function Stats() {
 
   const trendHasData = trendData.some((d) => d.minutes > 0);
 
-  if (loading) return <div className="spinner" />;
+  if (loading) return (
+    <div className="skeleton-page animate-in">
+      <div className="skeleton-header">
+        <div className="skeleton skeleton-title" style={{ width:'8rem' }} />
+        <div className="skeleton skeleton-text" style={{ width:'10rem', height:'2rem', borderRadius:'var(--radius-sm)' }} />
+      </div>
+      <div className="skeleton-grid-2" style={{ gridTemplateColumns:'repeat(3,1fr)' }}>
+        {[1,2,3].map(i => <div key={i} className="skeleton-card" style={{ height:'7rem' }} />)}
+      </div>
+      <div className="skeleton-card" style={{ height:'10rem' }} />
+      <div className="skeleton-card" style={{ height:'12rem' }} />
+      <div className="skeleton-card" style={{ height:'8rem' }} />
+    </div>
+  );
 
   return (
     <div className="layout animate-in">
@@ -423,9 +436,10 @@ export default function Stats() {
 
       {sessions.length === 0 && (
         <div className="empty-state">
-          <div style={{ fontSize: '2.5rem', marginBottom: '0.75rem' }}>📊</div>
-          No sessions logged yet.<br />
-          <strong>Start a timer</strong> on the Today page to track your first session.
+          <span className="empty-icon">📊</span>
+          <span className="empty-title">No sessions recorded yet</span>
+          <span className="empty-desc">Start a focus timer on the Today page — your activity will appear here as charts and streaks.</span>
+          <a href="/"><button className="empty-cta">▶ Start a Session</button></a>
         </div>
       )}
     </div>
