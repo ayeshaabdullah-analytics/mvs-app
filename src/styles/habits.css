@@ -558,3 +558,108 @@
   color: var(--success);
   border: 1px solid rgba(74,222,128,0.3);
 }
+
+/* ─────────────────────────────────────────────
+   STREAK FREEZE
+───────────────────────────────────────────── */
+
+/* ── Frozen day cell in 7-day grid ── */
+.habit-day-check.frozen {
+  background: linear-gradient(135deg, #60a5fa22, #93c5fd33);
+  border: 1.5px solid #60a5fa88;
+  color: #93c5fd;
+  cursor: default;
+  font-size: 0.65rem;
+  pointer-events: none;
+  box-shadow: 0 0 6px rgba(96,165,250,0.25);
+}
+.habit-day-check.frozen:hover {
+  transform: none;
+  border-color: #60a5fa88;
+  background: linear-gradient(135deg, #60a5fa22, #93c5fd33);
+}
+
+/* ── Freeze quota badge in completion bar header ── */
+.habit-freeze-quota {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #60a5fa;
+  background: rgba(96,165,250,0.12);
+  border: 1px solid rgba(96,165,250,0.3);
+  border-radius: 20px;
+  padding: 0.12rem 0.42rem;
+  white-space: nowrap;
+  cursor: help;
+  transition: all 0.15s;
+}
+.habit-freeze-quota.exhausted {
+  color: var(--text-faint);
+  background: var(--surface2);
+  border-color: var(--border);
+}
+
+/* ── Freeze action button ── */
+.habit-freeze-btn {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(96,165,250,0.1);
+  border: 1px solid rgba(96,165,250,0.35);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.16s;
+  flex-shrink: 0;
+  font-family: inherit;
+}
+.habit-freeze-btn:hover:not(.disabled) {
+  background: rgba(96,165,250,0.22);
+  border-color: #60a5fa;
+  transform: scale(1.08);
+  box-shadow: 0 0 10px rgba(96,165,250,0.3);
+}
+.habit-freeze-btn.disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+}
+
+/* ── Freeze date picker panel ── */
+.habit-freeze-log {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0.6rem 0.75rem;
+  background: rgba(96,165,250,0.07);
+  border: 1px dashed rgba(96,165,250,0.4);
+  border-radius: var(--radius-sm);
+  animation: slideDown 0.16s ease both;
+}
+.habit-freeze-log input[type="date"] {
+  flex: 1;
+  min-width: 130px;
+  font-size: 0.82rem;
+  padding: 0.3rem 0.6rem;
+  border-color: rgba(96,165,250,0.4);
+}
+.habit-freeze-log input[type="date"]:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96,165,250,0.18);
+}
+.habit-freeze-log-status {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 20px;
+  background: rgba(96,165,250,0.12);
+  color: #60a5fa;
+  border: 1px solid rgba(96,165,250,0.3);
+}
+.habit-freeze-log-status.already-done {
+  background: var(--warning-soft);
+  color: var(--warning);
+  border-color: rgba(251,191,36,0.3);
+}
