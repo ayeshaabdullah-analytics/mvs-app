@@ -108,16 +108,18 @@ export default function Habits() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.name.trim()) return;
-    await addHabit({
+    // Capture snapshot and close form immediately (optimistic close)
+    const snapshot = {
       name: form.name.trim(),
       emoji: form.emoji,
       color: form.color,
       frequency: form.frequency,
       customDays: form.customDays,
       goalStreak: Number(form.goalStreak),
-    });
-    setForm({ name: '', emoji: '🏃', color: PRESET_COLORS[0], frequency: 'daily', customDays: [], goalStreak: 7 });
+    };
     setShowForm(false);
+    setForm({ name: '', emoji: '🏃', color: PRESET_COLORS[0], frequency: 'daily', customDays: [], goalStreak: 7 });
+    await addHabit(snapshot);
   };
 
   const handleCheckin = useCallback(async (habitId, dk) => {
