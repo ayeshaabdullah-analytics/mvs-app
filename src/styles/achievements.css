@@ -13,8 +13,8 @@
   grid-template-columns: 1fr auto;
   gap: 1.5rem;
   align-items: center;
-  background-image: var(--gradient-card);
-  box-shadow: var(--shadow);
+  
+  
   position: relative;
   overflow: hidden;
 }
@@ -138,7 +138,7 @@
 }
 
 .ach-card.unlocked {
-  background-image: var(--gradient-card);
+  
   border-color: var(--border-glow);
   box-shadow: var(--shadow-sm), var(--glow-sm);
 }
@@ -284,7 +284,7 @@
   text-align: center;
   box-shadow: var(--shadow-lg);
   animation: scaleIn 0.22s cubic-bezier(0.16,1,0.3,1) both;
-  background-image: var(--gradient-card);
+  
   position: relative;
 }
 

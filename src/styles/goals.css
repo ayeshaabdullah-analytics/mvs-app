@@ -14,25 +14,11 @@
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.1rem 1.15rem;
+  padding: 1rem 1.125rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  transition: all 0.2s;
-  background-image: var(--gradient-card);
-  overflow: hidden;
-  position: relative;
-}
-.goals-sum-card::after {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: var(--primary-soft);
-  transform: translate(20px, -20px);
-  pointer-events: none;
+  gap: 0.875rem;
+  transition: box-shadow 0.18s, border-color 0.18s;
 }
 .goals-sum-card:hover { box-shadow: var(--shadow); border-color: var(--border-glow); }
 
@@ -45,8 +31,9 @@
 .goals-sum-info { z-index: 1; }
 
 .goals-sum-value {
+  font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--primary);
   letter-spacing: -0.03em;
   line-height: 1;

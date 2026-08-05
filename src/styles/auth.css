@@ -2,7 +2,7 @@
 .auth-page { min-height:100vh; display:flex; align-items:center; justify-content:center; background:var(--bg); padding:1rem; position:relative; overflow:hidden; }
 .auth-page::before { content:''; position:absolute; top:-25%; left:50%; transform:translateX(-50%); width:900px; height:900px; background:radial-gradient(circle, var(--primary-soft) 0%, transparent 58%); pointer-events:none; z-index:0; animation:float 8s ease-in-out infinite; }
 
-.auth-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-xl); padding:2.75rem 2.25rem 2.25rem; width:100%; max-width:420px; box-shadow:var(--shadow-lg); position:relative; z-index:1; animation:scaleIn 0.28s cubic-bezier(0.16,1,0.3,1) both; background-image:var(--gradient-card); }
+.auth-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-xl); padding:2.75rem 2.25rem 2.25rem; width:100%; max-width:420px; box-shadow:var(--shadow-lg); position:relative; z-index:1; animation:scaleIn 0.28s cubic-bezier(0.16,1,0.3,1) both; }
 
 .auth-logo { font-size:3rem; font-weight:900; background:var(--gradient-primary); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin:0 0 0.2rem; text-align:center; letter-spacing:-3px; line-height:1; }
 .auth-tagline { text-align:center; color:var(--text-muted); font-size:0.8rem; margin:0 0 2rem; letter-spacing:0.06em; font-weight:500; }

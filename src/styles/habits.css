@@ -19,7 +19,6 @@
   flex-direction: column;
   gap: 0.35rem;
   transition: all 0.2s;
-  background-image: var(--gradient-card);
   position: relative;
   overflow: hidden;
 }
@@ -63,7 +62,6 @@
   flex-direction: column;
   gap: 1rem;
   animation: slideDown 0.22s ease both;
-  background-image: var(--gradient-card);
   box-shadow: 0 0 0 1px var(--primary-soft), var(--shadow);
 }
 
@@ -168,8 +166,7 @@
 .day-checkbox-btn.active {
   background: var(--primary);
   border-color: var(--primary);
-  color: #fff;
-  box-shadow: var(--glow-sm);
+  color: var(--primary-text, #fff);
 }
 
 /* ── Filter tabs ── */
@@ -217,30 +214,19 @@
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 1.2rem;
+  padding: 1.125rem;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
-  transition: all 0.22s cubic-bezier(0.16,1,0.3,1);
-  animation: itemAdd 0.28s cubic-bezier(0.16,1,0.3,1) both;
-  background-image: var(--gradient-card);
+  gap: 0.875rem;
+  transition: box-shadow 0.18s, border-color 0.18s, transform 0.18s;
+  animation: itemAdd 0.26s cubic-bezier(0.16,1,0.3,1) both;
   position: relative;
   overflow: hidden;
 }
-
-.habit-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; bottom: 0;
-  width: 4px;
-  border-radius: 0 0 0 0;
-  transition: opacity 0.2s;
-}
-
 .habit-card:hover {
   box-shadow: var(--shadow);
   border-color: var(--border-glow);
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
 .habit-card-header {
@@ -387,28 +373,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
-  background: var(--gradient-primary);
+  gap: 0.4rem;
+  background: var(--primary);
   color: var(--primary-text, #fff);
   border: none;
   border-radius: var(--radius-sm);
-  padding: 0.55rem 1rem;
-  font-size: 0.82rem;
-  font-weight: 700;
+  padding: 0.5rem 0.875rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.18s;
+  transition: background 0.14s, transform 0.12s;
   font-family: inherit;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.2), var(--glow-sm);
 }
-.habit-checkin-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 18px rgba(0,0,0,0.25), var(--glow); }
-.habit-checkin-btn:active { transform: translateY(1px); box-shadow: none; }
+.habit-checkin-btn:hover { background: var(--primary-hover); transform: translateY(-1px); }
+.habit-checkin-btn:active { transform: translateY(0); }
 .habit-checkin-btn:disabled {
   background: var(--success-soft);
   color: var(--success);
-  box-shadow: none;
   cursor: default;
   transform: none;
-  border: 1px solid rgba(74,222,128,0.3);
+  border: 1px solid rgba(52,211,153,0.25);
 }
 
 @media (max-width: 700px) {

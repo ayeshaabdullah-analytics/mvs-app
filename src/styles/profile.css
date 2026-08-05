@@ -2,7 +2,7 @@
 .profile-hero {
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-xl);
   padding: 2rem; margin-bottom: 1.75rem; display: flex; align-items: center; gap: 1.5rem;
-  background-image: var(--gradient-card); box-shadow: var(--shadow); flex-wrap: wrap;
+   box-shadow: var(--shadow); flex-wrap: wrap;
   position: relative; overflow: hidden;
 }
 .profile-hero::before {
@@ -26,7 +26,7 @@
 .profile-badge { display:inline-flex; align-items:center; gap:0.3rem; background:var(--primary-soft); border:1px solid var(--border-glow); color:var(--primary); border-radius:50px; padding:0.22rem 0.65rem; font-size:0.72rem; font-weight:700; }
 
 /* Theme picker */
-.theme-picker { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding:1.35rem; margin-bottom:1.25rem; background-image:var(--gradient-card); }
+.theme-picker { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding:1.35rem; margin-bottom:1.25rem; }
 .theme-picker h2 { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-muted); margin-bottom:1rem; }
 .theme-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0.65rem; }
 .theme-card {
@@ -51,13 +51,13 @@
 
 /* Stats section */
 .profile-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; margin-bottom: 1.25rem; }
-.profile-stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem; text-align: center; background-image: var(--gradient-card); transition: all 0.2s; }
+.profile-stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem; text-align: center;  transition: all 0.2s; }
 .profile-stat-card:hover { box-shadow: var(--shadow); border-color: var(--border-glow); }
 .profile-stat-value { font-size: 1.6rem; font-weight: 800; color: var(--primary); letter-spacing: -0.04em; line-height: 1; }
 .profile-stat-label { font-size: 0.7rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.3rem; }
 
 /* Settings */
-.profile-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.35rem; margin-bottom: 1.25rem; background-image: var(--gradient-card); }
+.profile-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.35rem; margin-bottom: 1.25rem;  }
 .profile-section h2 { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 1rem; }
 .settings-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
 .settings-row:last-child { border-bottom: none; padding-bottom: 0; }

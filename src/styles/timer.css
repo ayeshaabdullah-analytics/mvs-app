@@ -29,7 +29,6 @@
   gap: 1.15rem;
   box-shadow: var(--shadow-lg);
   animation: scaleIn 0.24s cubic-bezier(0.16,1,0.3,1) both;
-  background-image: var(--gradient-card);
   overflow: hidden;
 }
 
@@ -285,7 +284,6 @@
   cursor: pointer;
   animation: scaleIn 0.22s ease;
   transition: transform 0.16s, box-shadow 0.16s;
-  background-image: var(--gradient-card);
 }
 .timer-mini:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg), var(--glow); }
 
